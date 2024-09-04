@@ -36,9 +36,10 @@ public class UsuarioServiceImplement implements IUsuarioService {
     public void delete(int id) {
         uS.deleteById(id);
     }
-
     @Override
     public List<Usuario> UsuariosPorPais() {
         return uS.UsuariosPorPais();
     }
+    public List<String[]> cantidadUsuarioEdadGenero() {return uS.cantidadUsuarioEdadGenero();}
+
 }

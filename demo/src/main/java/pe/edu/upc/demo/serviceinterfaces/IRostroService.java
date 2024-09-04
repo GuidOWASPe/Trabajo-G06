@@ -10,4 +10,5 @@ public interface IRostroService {
     public Rostro listId(int id);
     public void update(Rostro r);
     public void delete(int id);
+    public List<String[]> cantidadRostrosForma();
 }

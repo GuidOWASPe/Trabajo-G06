@@ -38,4 +38,6 @@ public class RostroServiceImplement implements IRostroService {
     public void delete(int id) {
         rR.deleteById(id);
     }
+
+    public List<String[]> cantidadRostrosForma() {return rR.cantidadRostroForma();}
 }
