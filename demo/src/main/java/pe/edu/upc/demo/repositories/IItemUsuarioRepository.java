@@ -9,10 +9,10 @@ import java.util.List;
 
 @Repository
 public interface IItemUsuarioRepository extends JpaRepository<ItemUsuario, Integer> {
-    @Query(value = "SELECT I.nombreItem, COUNT(IU.idItem) AS Usos\n" +
-            " FROM ItemUsuario IU\n" +
-            " JOIN Item I ON IU.idItem = I.idItem\n" +
-            " GROUP BY I.nombreItem\n" +
-            " ORDER BY Usos DESC;\n",nativeQuery = true)
+    @Query(value = "SELECT I.nombre_item, COUNT(IU.id_item) AS nr_usos\n" +
+            " FROM item_usuario IU\n" +
+            " JOIN item I ON IU.id_item = I.id_item\n" +
+            " GROUP BY I.nombre_item\n" +
+            " ORDER BY nr_usos DESC;\n",nativeQuery = true)
     public List<String []> itemsmasusados();
 }

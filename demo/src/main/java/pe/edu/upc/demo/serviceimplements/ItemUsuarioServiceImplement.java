@@ -41,10 +41,7 @@ public class ItemUsuarioServiceImplement implements IItemUsuarioService {
     }
 
     @Override
-    public List<String[]> itemsmasusadoservice() {
-        return List.of();
+    public List<String[]> itemsmasusados() {
+        return iR.itemsmasusados();
     }
-
-
-
 }

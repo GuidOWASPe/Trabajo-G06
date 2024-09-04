@@ -4,5 +4,5 @@ import org.springframework.stereotype.Repository;
 import pe.edu.upc.demo.entities.Color;
 
 @Repository
-public interface IColorRepository extends JpaRepository<Color, Integer> {
+public interface   IColorRepository extends JpaRepository<Color, Integer> {
 }

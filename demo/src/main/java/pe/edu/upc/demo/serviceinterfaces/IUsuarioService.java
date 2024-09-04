@@ -11,5 +11,5 @@ public interface IUsuarioService {
     public void update(Usuario u);
     public void delete(int id);
     public List<String []> usuariosporgeneroservice();
-    public  List<String []> mesderegistrosusuarioservice();
+    public  List<String []> mesderegistrosusuarios();
 }

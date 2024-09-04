@@ -69,12 +69,12 @@ public class UsuarioController {
         return listDTO;
     }
 @GetMapping("/usuariosregistrados")
-    public List<PorcentUsuariosMesDTO> usuariosMes(){
-        List<String []>lista=uS.mesderegistrosusuarioservice();
+    public List<PorcentUsuariosMesDTO> usuariosregistrados(){
+        List<String []>lista=uS.mesderegistrosusuarios();
         List<PorcentUsuariosMesDTO>listDTO=new ArrayList<>();
         for (String[] columna:lista) {
             PorcentUsuariosMesDTO dto=new PorcentUsuariosMesDTO();
-            dto.setMesregistro(LocalDate.parse(columna[0]));
+            dto.setMesregistro(LocalDate.parse(columna[0]+ "-01"));
             dto.setUsuariosregistrados(Integer.parseInt(columna[1]));
             dto.setPorcentaje(Double.parseDouble(columna[2]));
             listDTO.add(dto);

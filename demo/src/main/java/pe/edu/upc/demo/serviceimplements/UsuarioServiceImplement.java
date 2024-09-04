@@ -43,9 +43,10 @@ public class UsuarioServiceImplement implements IUsuarioService {
     }
 
     @Override
-    public List<String[]> mesderegistrosusuarioservice() {
+    public List<String[]> mesderegistrosusuarios() {
         return uS.mesderegistrosusuarios();
     }
+
 
 
 }

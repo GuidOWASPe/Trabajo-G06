@@ -11,6 +11,6 @@ public interface IItemUsuarioService {
     public ItemUsuario listId(int id);
     public void update(ItemUsuario iu);
     public void delete(int id);
-    public List<String []> itemsmasusadoservice();
+    public List<String []> itemsmasusados();
 
 }
