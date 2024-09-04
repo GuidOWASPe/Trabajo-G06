@@ -34,4 +34,9 @@ public class EstiloServiceImplement implements IEstiloService {
     public void delete(int id) {
         eR.deleteById(id);
     }
+
+    @Override
+    public List<String[]> EstilosPorUsuarios() {
+        return eR.EstilosPorUsuarios();
+    }
 }

@@ -49,5 +49,12 @@ public class UsuarioController {
     public void eliminar(@PathVariable("id") Integer id){
         uS.delete(id);
     }
+    @GetMapping("/usuarios_por_paises")
+    public List<UsuarioDTO> UsuariosPorPaises(){
 
+        return uS.UsuariosPorPais().stream().map(x->{
+            ModelMapper m=new ModelMapper();
+            return m.map(x,UsuarioDTO.class);
+        }).collect(Collectors.toList());
+    }
 }
