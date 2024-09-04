@@ -36,4 +36,6 @@ public class UsuarioServiceImplement implements IUsuarioService {
     public void delete(int id) {
         uS.deleteById(id);
     }
+
+    public List<String[]> cantidadUsuarioEdadGenero() {return uS.cantidadUsuarioEdadGenero();}
 }
