@@ -12,4 +12,6 @@ public interface IUsuarioService {
     public void delete(int id);
     public List<Usuario> UsuariosPorPais();
     public List<String[]> cantidadUsuarioEdadGenero();
+    public List<String []> usuariosporgeneroservice();
+    public List<String []> mesderegistrosusuarios();
 }
