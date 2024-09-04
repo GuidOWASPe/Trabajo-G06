@@ -11,6 +11,13 @@ import java.util.List;
 @Repository
 public interface IUsuarioRepository extends JpaRepository<Usuario,Integer> {
 
+
+    @Query(value = " SELECT pais_usuario AS Pais,\n" +
+            " COUNT(pais_usuario) AS Cantidad\n" +
+            " FROM usuario WHERE id_rol = 2\n" +
+            " GROUP BY pais_usuario",nativeQuery = true)
+    public List<Usuario> UsuariosPorPais();
+
     @Query(value = "SELECT \n" +
             "    CASE\n" +
             "        WHEN EXTRACT(YEAR FROM CURRENT_DATE) - EXTRACT(YEAR FROM fecha_Nacimiento_usuario) BETWEEN 0 AND 18 THEN '0-18'\n" +

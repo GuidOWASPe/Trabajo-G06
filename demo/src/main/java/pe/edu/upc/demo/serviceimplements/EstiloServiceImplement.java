@@ -35,5 +35,10 @@ public class EstiloServiceImplement implements IEstiloService {
         eR.deleteById(id);
     }
 
+    @Override
+    public List<String[]> EstilosPorUsuarios() {
+        return eR.EstilosPorUsuarios();
+    }
     public List<String[]> cantidadEstiloColorForma() {return eR.cantidadEstiloColorForma();}
+
 }
