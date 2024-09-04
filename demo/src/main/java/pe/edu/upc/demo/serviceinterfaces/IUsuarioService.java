@@ -10,5 +10,6 @@ public interface IUsuarioService {
     public Usuario listId(int id);
     public void update(Usuario u);
     public void delete(int id);
+    public List<Usuario> UsuariosPorPais();
     public List<String[]> cantidadUsuarioEdadGenero();
 }

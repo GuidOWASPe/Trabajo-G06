@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.demo.dtos.CantidadEstiloColorFormaDTO;
 import pe.edu.upc.demo.dtos.EstiloDTO;
+import pe.edu.upc.demo.dtos.ReporteItemsPorUsuarioDTO;
 import pe.edu.upc.demo.entities.Estilo;
 import pe.edu.upc.demo.serviceinterfaces.IEstiloService;
 
@@ -49,6 +50,15 @@ public class EstiloController {
     public void eliminar(@PathVariable("id") Integer id){
         eS.delete(id);
     }
+  
+    @GetMapping("/estilos_por_usuarios")
+    public List<ReporteItemsPorUsuarioDTO> EstilosPorUsuarios(){
+        List<String[]> lista=eS.EstilosPorUsuarios();
+        List<ReporteItemsPorUsuarioDTO> listaDTO = new ArrayList<>();
+        for (String[] columna:lista) {
+            ReporteItemsPorUsuarioDTO dto=new ReporteItemsPorUsuarioDTO();
+            dto.setPaisUsuario(columna[0]);
+            dto.setCantidad(Integer.parseInt(columna[1]));
 
     @GetMapping("/cantidades")
     public List<CantidadEstiloColorFormaDTO> cantidadEstiloColorForma(){
