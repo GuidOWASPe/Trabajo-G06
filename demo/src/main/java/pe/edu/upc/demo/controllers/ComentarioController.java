@@ -3,10 +3,13 @@ package pe.edu.upc.demo.controllers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.demo.dtos.CantidadRostroFormaDTO;
 import pe.edu.upc.demo.dtos.ComentarioDTO;
+import pe.edu.upc.demo.dtos.ComentariosNegativosFrecuentesDTO;
 import pe.edu.upc.demo.entities.Comentario;
 import pe.edu.upc.demo.serviceinterfaces.IComentarioService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -48,5 +51,18 @@ public class ComentarioController {
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id") Integer id){
         cT.delete(id);
+    }
+
+    @GetMapping("/comentariosnegativos")
+    public List<ComentariosNegativosFrecuentesDTO> listarComentariosNegativosFrecuentes(){
+        List<String[]>lista= cT.listarComentariosNegativosFrecuentes();
+        List<ComentariosNegativosFrecuentesDTO> listaDTO = new ArrayList<>();
+        for(String[] columna:lista){
+            ComentariosNegativosFrecuentesDTO dto=new ComentariosNegativosFrecuentesDTO();
+            dto.setContenido(columna[0]);
+            dto.setFrecuencia(Integer.parseInt(columna[1]));
+            listaDTO.add(dto);
+        }
+        return listaDTO;
     }
 }
