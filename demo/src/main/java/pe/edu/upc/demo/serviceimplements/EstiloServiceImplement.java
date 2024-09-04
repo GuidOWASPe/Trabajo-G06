@@ -34,4 +34,6 @@ public class EstiloServiceImplement implements IEstiloService {
     public void delete(int id) {
         eR.deleteById(id);
     }
+
+    public List<String[]> cantidadEstiloColorForma() {return eR.cantidadEstiloColorForma();}
 }
