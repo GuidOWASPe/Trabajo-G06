@@ -7,6 +7,7 @@ import pe.edu.upc.demo.dtos.ItemDTO;
 import pe.edu.upc.demo.entities.Item;
 import pe.edu.upc.demo.serviceinterfaces.IItemService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -46,5 +47,13 @@ public class ItemController {
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id") Integer id){
         iR.delete(id);
+    }
+
+    @GetMapping("/MaximoNumeroDeUsos")
+    public List<ItemDTO> maximoNumeroDeUsos(){
+        return iR.maxNroUsos().stream().map(x->{
+            ModelMapper m=new ModelMapper();
+            return m.map(x,ItemDTO.class);
+        }).collect(Collectors.toList());
     }
 }

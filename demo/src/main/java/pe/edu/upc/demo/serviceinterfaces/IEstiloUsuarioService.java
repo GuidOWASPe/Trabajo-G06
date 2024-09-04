@@ -10,4 +10,5 @@ public interface IEstiloUsuarioService {
     public EstiloUsuario listId(int id);
     public void update(EstiloUsuario v);
     public void delete(int id);
+    public List<String[]> estiloUsuarioConPC();
 }
