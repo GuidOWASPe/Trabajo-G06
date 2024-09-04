@@ -3,10 +3,14 @@ package pe.edu.upc.demo.controllers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.demo.dtos.PorcentUsuariosMesDTO;
+import pe.edu.upc.demo.dtos.PorcentUsuariosporGeneroDTO;
 import pe.edu.upc.demo.dtos.UsuarioDTO;
 import pe.edu.upc.demo.entities.Usuario;
 import pe.edu.upc.demo.serviceinterfaces.IUsuarioService;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -48,6 +52,34 @@ public class UsuarioController {
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id") Integer id){
         uS.delete(id);
+    }
+
+
+    @GetMapping("/usuariosporgenero")
+    public List<PorcentUsuariosporGeneroDTO> usuariosporgenero(){
+        List<String []>lista=uS.usuariosporgeneroservice();
+        List<PorcentUsuariosporGeneroDTO>listDTO=new ArrayList<>();
+        for (String[] columna:lista) {
+            PorcentUsuariosporGeneroDTO dto=new PorcentUsuariosporGeneroDTO();
+            dto.setGenero(columna[0]);
+          dto.setCantidadusuarios(Integer.parseInt(columna[1]));
+          dto.setPorcentaje(Double.parseDouble(columna[2]));
+            listDTO.add(dto);
+        }
+        return listDTO;
+    }
+@GetMapping("/usuariosregistrados")
+    public List<PorcentUsuariosMesDTO> usuariosMes(){
+        List<String []>lista=uS.mesderegistrosusuarioservice();
+        List<PorcentUsuariosMesDTO>listDTO=new ArrayList<>();
+        for (String[] columna:lista) {
+            PorcentUsuariosMesDTO dto=new PorcentUsuariosMesDTO();
+            dto.setMesregistro(LocalDate.parse(columna[0]));
+            dto.setUsuariosregistrados(Integer.parseInt(columna[1]));
+            dto.setPorcentaje(Double.parseDouble(columna[2]));
+            listDTO.add(dto);
+        }
+        return listDTO;
     }
 
 }

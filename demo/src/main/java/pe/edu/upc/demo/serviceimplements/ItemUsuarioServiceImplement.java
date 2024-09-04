@@ -39,4 +39,12 @@ public class ItemUsuarioServiceImplement implements IItemUsuarioService {
     public void delete(int id) {
         iR.deleteById(id);
     }
+
+    @Override
+    public List<String[]> itemsmasusadoservice() {
+        return List.of();
+    }
+
+
+
 }
