@@ -37,4 +37,9 @@ public class EstiloUsuarioImplement implements IEstiloUsuarioService {
     public void delete(int id) {
         eR.deleteById(id);
     }
+
+    @Override
+    public List<String[]> estiloUsuarioConPC() {
+        return eR.estiloUsuarioConPC();
+    }
 }
