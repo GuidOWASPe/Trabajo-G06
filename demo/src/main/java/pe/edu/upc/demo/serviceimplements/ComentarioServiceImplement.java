@@ -28,9 +28,10 @@ public class ComentarioServiceImplement implements IComentarioService {
     public void update(Comentario c){
         cT.save(c);
     }
-
     @Override
     public void delete(int id){
         cT.deleteById(id);
     }
+
+    public List<String[]> listarComentariosNegativosFrecuentes() {return cT.listarComentariosNegativosFrecuentes();}
 }
