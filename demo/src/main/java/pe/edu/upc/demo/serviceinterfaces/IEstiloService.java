@@ -10,5 +10,6 @@ public interface IEstiloService {
     public Estilo listId(int id);
     public void update(Estilo v);
     public void delete(int id);
-
+    public List<String[]> EstilosPorUsuarios();
+    public List<String[]> cantidadEstiloColorForma();
 }

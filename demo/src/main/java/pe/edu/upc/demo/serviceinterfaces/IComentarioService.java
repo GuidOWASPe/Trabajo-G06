@@ -10,4 +10,5 @@ public interface IComentarioService {
     public Comentario listId(int id);
     public void update(Comentario c);
     public void delete(int id);
+    public List<String[]> listarComentariosNegativosFrecuentes();
 }
