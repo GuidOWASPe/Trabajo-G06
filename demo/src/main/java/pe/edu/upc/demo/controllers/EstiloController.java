@@ -3,10 +3,12 @@ package pe.edu.upc.demo.controllers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.demo.dtos.CantidadEstiloColorFormaDTO;
 import pe.edu.upc.demo.dtos.EstiloDTO;
 import pe.edu.upc.demo.entities.Estilo;
 import pe.edu.upc.demo.serviceinterfaces.IEstiloService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -46,6 +48,20 @@ public class EstiloController {
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id") Integer id){
         eS.delete(id);
+    }
+
+    @GetMapping("/cantidades")
+    public List<CantidadEstiloColorFormaDTO> cantidadEstiloColorForma(){
+        List<String[]>lista= eS.cantidadEstiloColorForma();
+        List<CantidadEstiloColorFormaDTO> listaDTO = new ArrayList<>();
+        for(String[] columna:lista){
+            CantidadEstiloColorFormaDTO dto=new CantidadEstiloColorFormaDTO();
+            dto.setNombreForma(columna[0]);
+            dto.setCodigoColor(columna[1]);
+            dto.setCantidadEstilo(Integer.parseInt(columna[2]));
+            listaDTO.add(dto);
+        }
+        return listaDTO;
     }
 }
 
