@@ -38,8 +38,11 @@ public class ItemServiceImplement implements IItemService {
     public void delete(int id) {
         iR.deleteById(id);
     }
+
     @Override
-    public List<Item> maxNroUsos() {
+    public List<String[]> maxNroUsos() {
         return iR.maxNroUsos();
     }
+
 }
+
