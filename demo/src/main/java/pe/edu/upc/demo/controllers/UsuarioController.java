@@ -91,5 +91,16 @@ public class UsuarioController {
         }
         return listDTO;
     }
-
+    @GetMapping("/paisesPorUsuario")
+    public List<ReportePaisesPorUsuarioDTO> PaisesPorUsuario(){
+        List<String[]> lista= uS.PaisesPorUsuario();
+        List<ReportePaisesPorUsuarioDTO> listaDTO = new ArrayList<>();
+        for (String[] columna:lista) {
+            ReportePaisesPorUsuarioDTO dto=new ReportePaisesPorUsuarioDTO();
+            dto.setNickname_usuario(columna[0]);
+            dto.setCantidad_estilos(Integer.parseInt(columna[1]));
+            listaDTO.add(dto);
+        }
+        return listaDTO;
+    }
 }
