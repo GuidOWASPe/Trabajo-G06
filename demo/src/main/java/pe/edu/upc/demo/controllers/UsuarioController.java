@@ -2,6 +2,8 @@ package pe.edu.upc.demo.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.demo.dtos.*;
 import pe.edu.upc.demo.entities.Usuario;
@@ -14,9 +16,13 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/usuarios")
+@PreAuthorize("hasAuthority('ADMINISTRADOR')")
 public class UsuarioController {
     @Autowired
     private IUsuarioService uS;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @GetMapping
     public List<UsuarioDTO> listar(){
@@ -31,6 +37,8 @@ public class UsuarioController {
     public void insertar(@RequestBody UsuarioDTO dto){
         ModelMapper m=new ModelMapper();
         Usuario u=m.map(dto, Usuario.class);
+        String encodedPassword = passwordEncoder.encode(u.getPassword());
+        u.setPassword(encodedPassword);
         uS.insert(u);
     }
 

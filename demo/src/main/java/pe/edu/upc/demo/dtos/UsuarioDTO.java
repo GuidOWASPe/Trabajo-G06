@@ -15,7 +15,7 @@ public class UsuarioDTO {
     private String fotoPerfilUsuario;
     private String paisUsuario;
     private String sexoUsuario;
-    private Rol ro;
+    private Boolean enabled;
 
     public int getIdUsuario() {
         return idUsuario;
@@ -89,11 +89,11 @@ public class UsuarioDTO {
         this.sexoUsuario = sexoUsuario;
     }
 
-    public Rol getRo() {
-        return ro;
+    public Boolean getEnabled() {
+        return enabled;
     }
 
-    public void setRo(Rol ro) {
-        this.ro = ro;
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
     }
 }
