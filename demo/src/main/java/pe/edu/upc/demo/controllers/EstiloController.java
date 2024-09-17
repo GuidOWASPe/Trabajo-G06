@@ -66,7 +66,7 @@ public class EstiloController {
         return listaDTO;
     }
 
-    @GetMapping("/cantidadEstilosPorUsuario")
+    @GetMapping("/cantidad_de_Estilos_Por_Usuario")
     public List<ReporteEstilosPorUsuarioDTO> cantidadEstilosPorUsuario(){
         List<String[]>lista= eS.cantidadEstiloColorForma();
         List<ReporteEstilosPorUsuarioDTO> listaDTO = new ArrayList<>();
