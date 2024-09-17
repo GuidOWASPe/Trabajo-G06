@@ -1,5 +1,9 @@
 # Usar la imagen de Maven para construir el proyecto
-FROM maven:3.8.7-eclipse-temurin-21 as build
+FROM eclipse-temurin:21 as build
+
+# Instalar Maven
+RUN apt-get update && \
+    apt-get install -y maven
 
 # Establecer el directorio de trabajo dentro del contenedor
 WORKDIR /app
