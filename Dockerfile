@@ -23,7 +23,7 @@ FROM eclipse-temurin:21-jdk-alpine
 WORKDIR /app
 
 # Copiar el archivo JAR generado en la fase de construcción
-COPY --from=build /target/demo-0.0.1-SNAPSHOT.jar app.jar
+COPY --from=build app/target/demo-0.0.1-SNAPSHOT.jar app.jar
 
 # Exponer el puerto 8080
 EXPOSE 8080
