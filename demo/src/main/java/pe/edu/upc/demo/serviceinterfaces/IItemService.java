@@ -10,4 +10,5 @@ public interface IItemService {
     public Item listId(int id);
     public void update(Item t);
     public void delete(int id);
+    public List<String[]> maxNroUsos();
 }

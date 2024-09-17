@@ -20,8 +20,8 @@ public class UsuarioServiceImplement implements IUsuarioService {
     }
 
     @Override
-    public void insert(Usuario t) {
-        uS.save(t);
+    public void insert(Usuario tu) {
+        uS.save(tu);
     }
 
     @Override
@@ -42,4 +42,23 @@ public class UsuarioServiceImplement implements IUsuarioService {
     }
     public List<String[]> cantidadUsuarioEdadGenero() {return uS.cantidadUsuarioEdadGenero();}
 
+    @Override
+    public List<String[]> usuariosporgeneroservice() {
+        return uS.usuariosporgenero();
+    }
+
+    @Override
+    public List<String[]> mesderegistrosusuarios() {
+        return uS.mesderegistrosusuarios();
+    }
+
+    @Override
+    public List<String[]> cantidadEstilosPorUsuario() {
+        return uS.cantidadEstilosPorUsuario();
+    }
+
+    @Override
+    public List<String[]> PaisesPorUsuario() {
+        return uS.PaisesPorUsuario();
+    }
 }
