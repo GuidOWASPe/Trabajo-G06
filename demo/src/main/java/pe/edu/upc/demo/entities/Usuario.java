@@ -26,6 +26,7 @@ public class Usuario {
     private String paisUsuario;
     @Column(name = "sexoUsuario",length = 100,nullable = false)
     private String sexoUsuario;
+    private Boolean enabled;
     
     @ManyToOne
     @JoinColumn(name = "idRol")
@@ -34,17 +35,18 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(int idUsuario, Rol ro, String sexoUsuario, String paisUsuario, String fotoPerfilUsuario, LocalDate fechaRegistroUsuario, LocalDate fechaNacimientoUsuario, String correoUsuario, String contraseñaUsuario, String nicknameUsuario) {
+    public Usuario(int idUsuario, Rol ro, Boolean enabled, String nicknameUsuario, String contraseniaUsuario, LocalDate fechaNacimientoUsuario, String correoUsuario, LocalDate fechaRegistroUsuario, String fotoPerfilUsuario, String paisUsuario, String sexoUsuario) {
         this.idUsuario = idUsuario;
         this.ro = ro;
-        this.sexoUsuario = sexoUsuario;
-        this.paisUsuario = paisUsuario;
-        this.fotoPerfilUsuario = fotoPerfilUsuario;
-        this.fechaRegistroUsuario = fechaRegistroUsuario;
+        this.enabled = enabled;
+        this.nicknameUsuario = nicknameUsuario;
+        this.contraseniaUsuario = contraseniaUsuario;
         this.fechaNacimientoUsuario = fechaNacimientoUsuario;
         this.correoUsuario = correoUsuario;
-        this.contraseniaUsuario = contraseniaUsuario;
-        this.nicknameUsuario = nicknameUsuario;
+        this.fechaRegistroUsuario = fechaRegistroUsuario;
+        this.fotoPerfilUsuario = fotoPerfilUsuario;
+        this.paisUsuario = paisUsuario;
+        this.sexoUsuario = sexoUsuario;
     }
 
     public int getIdUsuario() {
@@ -53,14 +55,6 @@ public class Usuario {
 
     public void setIdUsuario(int idUsuario) {
         this.idUsuario = idUsuario;
-    }
-
-    public String getNicknameUsuario() {
-        return nicknameUsuario;
-    }
-
-    public void setNicknameUsuario(String nicknameUsuario) {
-        this.nicknameUsuario = nicknameUsuario;
     }
 
     public String getContraseniaUsuario() {
@@ -79,20 +73,28 @@ public class Usuario {
         this.correoUsuario = correoUsuario;
     }
 
-    public LocalDate getFechaNacimientoUsuario() {
-        return fechaNacimientoUsuario;
-    }
-
-    public void setFechaNacimientoUsuario(LocalDate fechaNacimientoUsuario) {
-        this.fechaNacimientoUsuario = fechaNacimientoUsuario;
-    }
-
     public LocalDate getFechaRegistroUsuario() {
         return fechaRegistroUsuario;
     }
 
     public void setFechaRegistroUsuario(LocalDate fechaRegistroUsuario) {
         this.fechaRegistroUsuario = fechaRegistroUsuario;
+    }
+
+    public String getNicknameUsuario() {
+        return nicknameUsuario;
+    }
+
+    public void setNicknameUsuario(String nicknameUsuario) {
+        this.nicknameUsuario = nicknameUsuario;
+    }
+
+    public LocalDate getFechaNacimientoUsuario() {
+        return fechaNacimientoUsuario;
+    }
+
+    public void setFechaNacimientoUsuario(LocalDate fechaNacimientoUsuario) {
+        this.fechaNacimientoUsuario = fechaNacimientoUsuario;
     }
 
     public String getFotoPerfilUsuario() {
@@ -117,6 +119,14 @@ public class Usuario {
 
     public void setSexoUsuario(String sexoUsuario) {
         this.sexoUsuario = sexoUsuario;
+    }
+
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
     }
 
     public Rol getRo() {

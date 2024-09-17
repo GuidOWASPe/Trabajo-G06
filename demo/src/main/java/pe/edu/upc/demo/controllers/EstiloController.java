@@ -24,7 +24,7 @@ public class EstiloController {
     public List<EstiloDTO> listar(){
         return eS.list().stream().map(x->{
             ModelMapper m=new ModelMapper();
-            return m.map(x, pe.edu.upc.demo.dtos.EstiloDTO.class);
+            return m.map(x, EstiloDTO.class);
         }).collect(Collectors.toList());
     }
     @PostMapping
