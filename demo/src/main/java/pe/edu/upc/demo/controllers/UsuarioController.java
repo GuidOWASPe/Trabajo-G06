@@ -52,7 +52,7 @@ public class UsuarioController {
         uS.delete(id);
     }
 
-    @GetMapping("/CantidadUsuarioXGenero")
+    @GetMapping("/Cantidad_de_Usuario_Segun_Edad_y_Genero")
     public List<CantidadUsuarioSegunEdadGeneroDTO> usuarioSegunEdadGenero(){
         List<String[]>lista= uS.cantidadUsuarioEdadGenero();
         List<CantidadUsuarioSegunEdadGeneroDTO> listaDTO = new ArrayList<>();
@@ -65,7 +65,7 @@ public class UsuarioController {
         }
         return listaDTO;
     }
-    @GetMapping("/PorcenUsuariosXGenero")
+    @GetMapping("/Porcen_de_Usuarios_por_Genero")
     public List<PorcentUsuariosporGeneroDTO> usuariosporgenero(){
         List<String []>lista=uS.usuariosporgeneroservice();
         List<PorcentUsuariosporGeneroDTO>listDTO=new ArrayList<>();
@@ -78,7 +78,7 @@ public class UsuarioController {
         }
         return listDTO;
     }
-    @GetMapping("/PorcenUsuariosregistrados")
+    @GetMapping("/Porcen_de_Usuarios_registrados")
     public List<PorcentUsuariosMesDTO> usuariosregistrados(){
         List<String []>lista=uS.mesderegistrosusuarios();
         List<PorcentUsuariosMesDTO>listDTO=new ArrayList<>();
@@ -91,7 +91,7 @@ public class UsuarioController {
         }
         return listDTO;
     }
-    @GetMapping("/PaisesPorUsuario")
+    @GetMapping("/Cantidad_de_Paises_Por_Usuario")
     public List<ReportePaisesPorUsuarioDTO> PaisesPorUsuario(){
         List<String[]> lista= uS.PaisesPorUsuario();
         List<ReportePaisesPorUsuarioDTO> listaDTO = new ArrayList<>();

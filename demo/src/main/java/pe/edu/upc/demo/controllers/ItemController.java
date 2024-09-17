@@ -53,7 +53,7 @@ public class ItemController {
         iR.delete(id);
     }
 
-    @GetMapping("/ItemConMasUsos")
+    @GetMapping("/Item_Mas_Usados")
     public List<ItemsMasUsadosDTO> maxNroUsos() {
         List<String[]> lista = iR.maxNroUsos();
         List<ItemsMasUsadosDTO> listaDTO = new ArrayList<>();

@@ -51,7 +51,7 @@ public class EstiloUsuarioController {
         eS.delete(id);
     }
 
-    @GetMapping("/EstiloUsuarioConPeorCalifiacion")
+    @GetMapping("/Estilo_de_Usuario_Con_Peor_Califiacion")
     public List<EstiloUsuarioConPCDTO> estiloUsuarioConPeorCalifiacion(){
         List<String[]> lista=eS.estiloUsuarioConPC();
         List<EstiloUsuarioConPCDTO> listaDTO=new ArrayList<>();

@@ -52,7 +52,7 @@ public class EstiloController {
         eS.delete(id);
     }
 
-    @GetMapping("/cantidadEstiloColorForma")
+    @GetMapping("/Distribución_de_Formas_Colores")
     public List<CantidadEstiloColorFormaDTO> cantidadEstiloColorForma(){
         List<String[]>lista= eS.cantidadEstiloColorForma();
         List<CantidadEstiloColorFormaDTO> listaDTO = new ArrayList<>();
