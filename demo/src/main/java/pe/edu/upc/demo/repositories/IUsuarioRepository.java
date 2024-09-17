@@ -64,6 +64,6 @@ public interface IUsuarioRepository extends JpaRepository<Usuario,Integer> {
             " FROM usuario WHERE id_rol = 2\n" +
             " GROUP BY pais_usuario",nativeQuery = true)
     public List<String[]> PaisesPorUsuario();
-
+    
     public Usuario findOneByUsername(String username);
 }
