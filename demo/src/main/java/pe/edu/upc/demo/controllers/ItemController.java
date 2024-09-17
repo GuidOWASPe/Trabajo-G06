@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.demo.dtos.ItemDTO;
 import pe.edu.upc.demo.dtos.ItemsMasUsadosDTO;
+import pe.edu.upc.demo.dtos.MaxNroUsosItemDTO;
 import pe.edu.upc.demo.entities.Item;
 import pe.edu.upc.demo.serviceinterfaces.IItemService;
 
@@ -53,14 +54,14 @@ public class ItemController {
         iR.delete(id);
     }
 
-    @GetMapping("/ItemConMasUsos")
-    public List<ItemsMasUsadosDTO> maxNroUsos() {
+    @GetMapping("/ItemsMasUsadoPorUsuarios")
+    public List<MaxNroUsosItemDTO> maxNroUsos() {
         List<String[]> lista = iR.maxNroUsos();
-        List<ItemsMasUsadosDTO> listaDTO = new ArrayList<>();
+        List<MaxNroUsosItemDTO> listaDTO = new ArrayList<>();
         for (String[] columna : lista) {
-            ItemsMasUsadosDTO dto = new ItemsMasUsadosDTO();
+            MaxNroUsosItemDTO dto = new MaxNroUsosItemDTO();
             dto.setNombreItem(columna[0]);
-            dto.setNrUsos(Integer.parseInt(columna[1]));
+            dto.setNroUsosItem(Integer.parseInt(columna[1]));
             listaDTO.add(dto);
         }
         return listaDTO;

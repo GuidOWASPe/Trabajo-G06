@@ -55,7 +55,7 @@ public class RostroController {
         rS.delete(id);
     }
 
-    @GetMapping("/rostrosformas")
+    @GetMapping("/CantidadRostroSegunForma")
     public List<CantidadRostroFormaDTO> cantidadRostrosForma(){
         List<String[]>lista= rS.cantidadRostrosForma();
         List<CantidadRostroFormaDTO> listaDTO = new ArrayList<>();

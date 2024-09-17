@@ -12,12 +12,6 @@ import java.util.List;
 public interface IUsuarioRepository extends JpaRepository<Usuario,Integer> {
 
 
-    @Query(value = " SELECT pais_usuario AS Pais,\n" +
-            " COUNT(pais_usuario) AS Cantidad\n" +
-            " FROM usuario WHERE id_rol = 2\n" +
-            " GROUP BY pais_usuario",nativeQuery = true)
-    public List<Usuario> UsuariosPorPais();
-
     @Query(value = "SELECT \n" +
             "    CASE\n" +
             "        WHEN EXTRACT(YEAR FROM CURRENT_DATE) - EXTRACT(YEAR FROM fecha_Nacimiento_usuario) BETWEEN 0 AND 18 THEN '0-18'\n" +
@@ -49,15 +43,6 @@ public interface IUsuarioRepository extends JpaRepository<Usuario,Integer> {
             " ORDER BY MesRegistro DESC;\n",nativeQuery = true)
     public  List<String []> mesderegistrosusuarios();
 
-    @Query(value ="SELECT u.nickname_usuario AS Usuario,\n" +
-            " \tCOUNT(e.id_estilo) AS cantidad_estilos\n" +
-            " FROM Estilo e\n" +
-            " LEFT JOIN Rostro r\n" +
-            " \tON e.id_rostro = r.id_rostro\n" +
-            " LEFT JOIN Usuario u\n" +
-            " \tON r.id_usuario = u.id_usuario\n" +
-            " GROUP BY (u.nickname_usuario)" ,nativeQuery = true)
-    public List<String[]>cantidadEstilosPorUsuario();
 
     @Query(value = "SELECT pais_usuario AS Pais,\n" +
             " COUNT(pais_usuario) AS Cantidad\n" +
