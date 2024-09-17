@@ -1,5 +1,5 @@
 # Usar la imagen de Maven para construir el proyecto
-FROM maven:3.8.7-eclipse-temurin-17 as build
+FROM maven:3.8.7-eclipse-temurin-21 as build
 
 # Establecer el directorio de trabajo dentro del contenedor
 WORKDIR /app
@@ -13,7 +13,7 @@ COPY src /app/src
 RUN mvn clean package -DskipTests
 
 # Usar una imagen más ligera de JDK para ejecutar la aplicación
-FROM eclipse-temurin:17-jdk-alpine
+FROM eclipse-temurin:21-jdk-alpine
 
 # Establecer el directorio de trabajo para la aplicación
 WORKDIR /app
