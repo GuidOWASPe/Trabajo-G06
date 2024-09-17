@@ -4,9 +4,11 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.demo.dtos.ItemUsuarioDTO;
+import pe.edu.upc.demo.dtos.ItemsMasUsadosDTO;
 import pe.edu.upc.demo.entities.ItemUsuario;
 import pe.edu.upc.demo.serviceinterfaces.IItemUsuarioService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -51,4 +53,5 @@ public class ItemUsuarioController {
     public void eliminar(@PathVariable("id") Integer id){
         iS.delete(id);
     }
+
 }

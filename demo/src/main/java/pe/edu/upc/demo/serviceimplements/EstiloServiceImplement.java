@@ -36,9 +36,10 @@ public class EstiloServiceImplement implements IEstiloService {
     }
 
     @Override
-    public List<String[]> EstilosPorUsuarios() {
-        return eR.EstilosPorUsuarios();
+    public List<String[]> cantidadEstilosPorUsuario() {
+        return eR.cantidadEstilosPorUsuario();
     }
     public List<String[]> cantidadEstiloColorForma() {return eR.cantidadEstiloColorForma();}
+
 
 }
