@@ -52,4 +52,13 @@ public class UsuarioServiceImplement implements IUsuarioService {
         return uS.mesderegistrosusuarios();
     }
 
+    @Override
+    public List<String[]> cantidadEstilosPorUsuario() {
+        return uS.cantidadEstilosPorUsuario();
+    }
+
+    @Override
+    public List<String[]> PaisesPorUsuario() {
+        return uS.PaisesPorUsuario();
+    }
 }

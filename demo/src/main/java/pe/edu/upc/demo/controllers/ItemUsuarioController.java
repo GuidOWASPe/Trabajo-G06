@@ -54,17 +54,4 @@ public class ItemUsuarioController {
         iS.delete(id);
     }
 
-    @GetMapping("/itemsusados")
-    public List<ItemsMasUsadosDTO> itemsMasUsados(){
-        List<String []>lista=iS.itemsmasusados();
-        List<ItemsMasUsadosDTO>listDTO=new ArrayList<>();
-        for (String [] columna:lista) {
-            ItemsMasUsadosDTO dto=new ItemsMasUsadosDTO();
-            dto.setNombreItem(columna[0]);
-            dto.setNusos(Integer.parseInt(columna[1]));
-            listDTO.add(dto);
-
-        }
-        return listDTO;
-    }
 }

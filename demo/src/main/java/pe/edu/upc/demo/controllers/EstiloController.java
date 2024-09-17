@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.demo.dtos.CantidadEstiloColorFormaDTO;
 import pe.edu.upc.demo.dtos.EstiloDTO;
+import pe.edu.upc.demo.dtos.ReporteEstilosPorUsuarioDTO;
+import pe.edu.upc.demo.dtos.ReportePaisesPorUsuarioDTO;
 import pe.edu.upc.demo.entities.Estilo;
 import pe.edu.upc.demo.serviceinterfaces.IEstiloService;
 
@@ -22,7 +24,7 @@ public class EstiloController {
     public List<EstiloDTO> listar(){
         return eS.list().stream().map(x->{
             ModelMapper m=new ModelMapper();
-            return m.map(x, pe.edu.upc.demo.dtos.EstiloDTO.class);
+            return m.map(x, EstiloDTO.class);
         }).collect(Collectors.toList());
     }
     @PostMapping
@@ -63,5 +65,20 @@ public class EstiloController {
         }
         return listaDTO;
     }
+
+    @GetMapping("/cantidadEstilosPorUsuario")
+    public List<ReporteEstilosPorUsuarioDTO> cantidadEstilosPorUsuario(){
+        List<String[]>lista= eS.cantidadEstiloColorForma();
+        List<ReporteEstilosPorUsuarioDTO> listaDTO = new ArrayList<>();
+        for(String[] columna:lista){
+            ReporteEstilosPorUsuarioDTO dto=new ReporteEstilosPorUsuarioDTO();
+            dto.setNickname_usuario(columna[0]);
+            dto.setCantidad_estilos(Integer.parseInt(columna[1]));
+            listaDTO.add(dto);
+        }
+        return listaDTO;
+    }
+
+
 }
 

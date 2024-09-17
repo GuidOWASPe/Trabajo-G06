@@ -14,4 +14,6 @@ public interface IUsuarioService {
     public List<String[]> cantidadUsuarioEdadGenero();
     public List<String []> usuariosporgeneroservice();
     public List<String []> mesderegistrosusuarios();
+    public List<String[]>cantidadEstilosPorUsuario();
+    public List<String[]> PaisesPorUsuario();
 }
