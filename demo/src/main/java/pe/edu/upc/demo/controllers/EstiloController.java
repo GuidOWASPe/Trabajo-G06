@@ -52,7 +52,8 @@ public class EstiloController {
         eS.delete(id);
     }
 
-    @GetMapping("/Distribución_de_Formas_Colores")
+
+    @GetMapping("/PopularidadFormasYColoresEstilo")
     public List<CantidadEstiloColorFormaDTO> cantidadEstiloColorForma(){
         List<String[]>lista= eS.cantidadEstiloColorForma();
         List<CantidadEstiloColorFormaDTO> listaDTO = new ArrayList<>();
@@ -66,9 +67,10 @@ public class EstiloController {
         return listaDTO;
     }
 
-    @GetMapping("/cantidad_de_Estilos_Por_Usuario")
+
+    @GetMapping("/CantidadEstilosPorUsuario")
     public List<ReporteEstilosPorUsuarioDTO> cantidadEstilosPorUsuario(){
-        List<String[]>lista= eS.cantidadEstiloColorForma();
+        List<String[]>lista= eS.cantidadEstilosPorUsuario();
         List<ReporteEstilosPorUsuarioDTO> listaDTO = new ArrayList<>();
         for(String[] columna:lista){
             ReporteEstilosPorUsuarioDTO dto=new ReporteEstilosPorUsuarioDTO();

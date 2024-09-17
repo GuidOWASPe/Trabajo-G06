@@ -52,7 +52,7 @@ public class UsuarioController {
         uS.delete(id);
     }
 
-    @GetMapping("/Cantidad_de_Usuario_Segun_Edad_y_Genero")
+    @GetMapping("/CantidadUsuariosPorGeneroSegunRangoEdad")
     public List<CantidadUsuarioSegunEdadGeneroDTO> usuarioSegunEdadGenero(){
         List<String[]>lista= uS.cantidadUsuarioEdadGenero();
         List<CantidadUsuarioSegunEdadGeneroDTO> listaDTO = new ArrayList<>();
@@ -65,7 +65,8 @@ public class UsuarioController {
         }
         return listaDTO;
     }
-    @GetMapping("/Porcen_de_Usuarios_por_Genero")
+
+    @GetMapping("/PorcentajeUsuariosPorGenero")
     public List<PorcentUsuariosporGeneroDTO> usuariosporgenero(){
         List<String []>lista=uS.usuariosporgeneroservice();
         List<PorcentUsuariosporGeneroDTO>listDTO=new ArrayList<>();
@@ -78,7 +79,8 @@ public class UsuarioController {
         }
         return listDTO;
     }
-    @GetMapping("/Porcen_de_Usuarios_registrados")
+
+    @GetMapping("/PorcentajeUsuariosRegistradosPorMes")
     public List<PorcentUsuariosMesDTO> usuariosregistrados(){
         List<String []>lista=uS.mesderegistrosusuarios();
         List<PorcentUsuariosMesDTO>listDTO=new ArrayList<>();
@@ -91,14 +93,15 @@ public class UsuarioController {
         }
         return listDTO;
     }
-    @GetMapping("/Cantidad_de_Paises_Por_Usuario")
+
+    @GetMapping("/CantidadUsuariosPorPaises")
     public List<ReportePaisesPorUsuarioDTO> PaisesPorUsuario(){
         List<String[]> lista= uS.PaisesPorUsuario();
         List<ReportePaisesPorUsuarioDTO> listaDTO = new ArrayList<>();
         for (String[] columna:lista) {
             ReportePaisesPorUsuarioDTO dto=new ReportePaisesPorUsuarioDTO();
-            dto.setNickname_usuario(columna[0]);
-            dto.setCantidad_estilos(Integer.parseInt(columna[1]));
+            dto.setPaisUsuario(columna[0]);
+            dto.setCantidad(Integer.parseInt(columna[1]));
             listaDTO.add(dto);
         }
         return listaDTO;

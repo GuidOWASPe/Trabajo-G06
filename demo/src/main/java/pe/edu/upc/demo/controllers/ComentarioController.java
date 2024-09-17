@@ -53,7 +53,8 @@ public class ComentarioController {
         cT.delete(id);
     }
 
-    @GetMapping("/Contador_de_Comentarios_Negativos")
+
+    @GetMapping("/ListarCantidadComentariosNegativos")
     public List<ComentariosNegativosFrecuentesDTO> listarComentariosNegativosFrecuentes(){
         List<String[]>lista= cT.listarComentariosNegativosFrecuentes();
         List<ComentariosNegativosFrecuentesDTO> listaDTO = new ArrayList<>();

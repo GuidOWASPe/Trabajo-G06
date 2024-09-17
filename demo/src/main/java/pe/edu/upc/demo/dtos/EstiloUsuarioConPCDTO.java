@@ -1,16 +1,16 @@
 package pe.edu.upc.demo.dtos;
 
 public class EstiloUsuarioConPCDTO {
-    private Integer id_estilo_fav;
+    private int id_estilo_fav;
     private String nickname_usuario;
     private String nombre_estilo;
-    private Integer calificacion_estilo;
+    private int calificacion_estilo;
 
-    public Integer getId_estilo_fav() {
+    public int getId_estilo_fav() {
         return id_estilo_fav;
     }
 
-    public void setId_estilo_fav(Integer id_estilo_fav) {
+    public void setId_estilo_fav(int id_estilo_fav) {
         this.id_estilo_fav = id_estilo_fav;
     }
 
@@ -30,11 +30,11 @@ public class EstiloUsuarioConPCDTO {
         this.nombre_estilo = nombre_estilo;
     }
 
-    public Integer getCalificacion_estilo() {
+    public int getCalificacion_estilo() {
         return calificacion_estilo;
     }
 
-    public void setCalificacion_estilo(Integer calificacion_estilo) {
+    public void setCalificacion_estilo(int calificacion_estilo) {
         this.calificacion_estilo = calificacion_estilo;
     }
 }

@@ -14,5 +14,5 @@ public interface IItemUsuarioRepository extends JpaRepository<ItemUsuario, Integ
             " JOIN item I ON IU.id_item = I.id_item\n" +
             " GROUP BY I.nombre_item\n" +
             " ORDER BY nr_usos DESC;\n",nativeQuery = true)
-    public List<String []> itemsmasusados();
+    public List<String []> itemsMasUsadosPorUsuario();
 }

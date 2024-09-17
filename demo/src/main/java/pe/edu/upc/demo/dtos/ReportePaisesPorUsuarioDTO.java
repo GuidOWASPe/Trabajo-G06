@@ -1,22 +1,23 @@
 package pe.edu.upc.demo.dtos;
 
 public class ReportePaisesPorUsuarioDTO {
-    private String nickname_usuario;
-    private int cantidad_estilos;
+    private String paisUsuario;
+    private int cantidad;
 
-    public String getNickname_usuario() {
-        return nickname_usuario;
+    public String getPaisUsuario() {
+        return paisUsuario;
     }
 
-    public void setNickname_usuario(String nickname_usuario) {
-        this.nickname_usuario = nickname_usuario;
+    public void setPaisUsuario(String paisUsuario) {
+        this.paisUsuario = paisUsuario;
     }
 
-    public int getCantidad_estilos() {
-        return cantidad_estilos;
+    public int getCantidad() {
+        return cantidad;
     }
 
-    public void setCantidad_estilos(int cantidad_estilos) {
-        this.cantidad_estilos = cantidad_estilos;
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
     }
+
 }
