@@ -65,6 +65,7 @@ public class UsuarioController {
         }
         return listaDTO;
     }
+
     @GetMapping("/PorcentajeUsuariosPorGenero")
     public List<PorcentUsuariosporGeneroDTO> usuariosporgenero(){
         List<String []>lista=uS.usuariosporgeneroservice();
@@ -78,6 +79,7 @@ public class UsuarioController {
         }
         return listDTO;
     }
+
     @GetMapping("/PorcentajeUsuariosRegistradosPorMes")
     public List<PorcentUsuariosMesDTO> usuariosregistrados(){
         List<String []>lista=uS.mesderegistrosusuarios();
@@ -91,6 +93,7 @@ public class UsuarioController {
         }
         return listDTO;
     }
+
     @GetMapping("/CantidadUsuariosPorPaises")
     public List<ReportePaisesPorUsuarioDTO> PaisesPorUsuario(){
         List<String[]> lista= uS.PaisesPorUsuario();

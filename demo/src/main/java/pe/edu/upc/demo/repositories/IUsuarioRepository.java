@@ -2,8 +2,8 @@ package pe.edu.upc.demo.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import pe.edu.upc.demo.entities.Usuario;
 import org.springframework.stereotype.Repository;
+import pe.edu.upc.demo.entities.Usuario;
 
 import java.util.List;
 
@@ -49,4 +49,6 @@ public interface IUsuarioRepository extends JpaRepository<Usuario,Integer> {
             " FROM usuario WHERE id_rol = 2\n" +
             " GROUP BY pais_usuario",nativeQuery = true)
     public List<String[]> PaisesPorUsuario();
+    
+    public Usuario findOneByUsername(String username);
 }
