@@ -7,7 +7,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import pe.edu.upc.demo.entities.Rol;
 import pe.edu.upc.demo.entities.Usuario;
 import pe.edu.upc.demo.repositories.IUsuarioRepository;
 
@@ -25,16 +24,18 @@ public class JwtUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Usuario user = repo.findOneByUsername(username);
-        Rol rol11 = user.getRo();
-        List<GrantedAuthority> roles = new ArrayList<>();
 
         if (user == null) {
             throw new UsernameNotFoundException(String.format("User not exists", username));
         }
-        String rol = rol11.getNombre();
-        roles.add(new SimpleGrantedAuthority(rol));
 
-        UserDetails ud = new org.springframework.security.core.userdetails.User(user.getNicknameUsuario(), user.getContraseniaUsuario(), user.getEnabled(), true, true, true, roles);
+        List<GrantedAuthority> roles = new ArrayList<>();
+
+        user.getRoles().forEach(rol -> {
+            roles.add(new SimpleGrantedAuthority(rol.getNombre()));
+        });
+
+        UserDetails ud = new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), user.getEnabled(), true, true, true, roles);
 
         return ud;
     }

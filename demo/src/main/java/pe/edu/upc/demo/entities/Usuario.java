@@ -2,18 +2,20 @@ package pe.edu.upc.demo.entities;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
+import java.util.List;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "Usuario")
-public class Usuario {
+@Table(name = "Usuarios")
+public class Usuario implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idUsuario;
-    @Column(name = "nicknameUsuario",length = 100,nullable = false)
-    private String nicknameUsuario;
-    @Column(name = "contraseniaUsuario",length = 100,nullable = false)
-    private String contraseniaUsuario;
+    @Column(name = "username",length = 100 , unique = true)
+    private String username;
+    @Column(name = "password",length = 100)
+    private String password;
     @Column(name = "correoUsuario",nullable = false)
     private String correoUsuario;
     @Column(name = "fechaNacimientoUsuario",nullable = false)
@@ -27,26 +29,26 @@ public class Usuario {
     @Column(name = "sexoUsuario",length = 100,nullable = false)
     private String sexoUsuario;
     private Boolean enabled;
-    
-    @ManyToOne
-    @JoinColumn(name = "idRol")
-    private Rol ro;
+
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
+    private List<Rol> roles;
 
     public Usuario() {
     }
 
-    public Usuario(int idUsuario, Rol ro, Boolean enabled, String nicknameUsuario, String contraseniaUsuario, LocalDate fechaNacimientoUsuario, String correoUsuario, LocalDate fechaRegistroUsuario, String fotoPerfilUsuario, String paisUsuario, String sexoUsuario) {
+    public Usuario(int idUsuario, String username, String password, String correoUsuario, LocalDate fechaNacimientoUsuario, LocalDate fechaRegistroUsuario, String fotoPerfilUsuario, String paisUsuario, String sexoUsuario, Boolean enabled, List<Rol> roles) {
         this.idUsuario = idUsuario;
-        this.ro = ro;
-        this.enabled = enabled;
-        this.nicknameUsuario = nicknameUsuario;
-        this.contraseniaUsuario = contraseniaUsuario;
-        this.fechaNacimientoUsuario = fechaNacimientoUsuario;
+        this.username = username;
+        this.password = password;
         this.correoUsuario = correoUsuario;
+        this.fechaNacimientoUsuario = fechaNacimientoUsuario;
         this.fechaRegistroUsuario = fechaRegistroUsuario;
         this.fotoPerfilUsuario = fotoPerfilUsuario;
         this.paisUsuario = paisUsuario;
         this.sexoUsuario = sexoUsuario;
+        this.enabled = enabled;
+        this.roles = roles;
     }
 
     public int getIdUsuario() {
@@ -57,12 +59,20 @@ public class Usuario {
         this.idUsuario = idUsuario;
     }
 
-    public String getContraseniaUsuario() {
-        return contraseniaUsuario;
+    public String getUsername() {
+        return username;
     }
 
-    public void setContraseniaUsuario(String contraseniaUsuario) {
-        this.contraseniaUsuario = contraseniaUsuario;
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getCorreoUsuario() {
@@ -79,14 +89,6 @@ public class Usuario {
 
     public void setFechaRegistroUsuario(LocalDate fechaRegistroUsuario) {
         this.fechaRegistroUsuario = fechaRegistroUsuario;
-    }
-
-    public String getNicknameUsuario() {
-        return nicknameUsuario;
-    }
-
-    public void setNicknameUsuario(String nicknameUsuario) {
-        this.nicknameUsuario = nicknameUsuario;
     }
 
     public LocalDate getFechaNacimientoUsuario() {
@@ -129,11 +131,11 @@ public class Usuario {
         this.enabled = enabled;
     }
 
-    public Rol getRo() {
-        return ro;
+    public List<Rol> getRoles() {
+        return roles;
     }
 
-    public void setRo(Rol ro) {
-        this.ro = ro;
+    public void setRoles(List<Rol> roles) {
+        this.roles = roles;
     }
 }
