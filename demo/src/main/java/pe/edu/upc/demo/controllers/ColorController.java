@@ -2,6 +2,7 @@ package pe.edu.upc.demo.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.demo.dtos.ColorDTO;
 import pe.edu.upc.demo.entities.Color;
@@ -17,6 +18,7 @@ public class ColorController {
     private IColorService cS;
 
     @GetMapping
+    @PreAuthorize("hasAuthority('USUARIO')")
     public List<ColorDTO> listar(){
 
         return cS.list().stream().map(x->{
@@ -25,12 +27,14 @@ public class ColorController {
         }).collect(Collectors.toList());
     }
     @PostMapping
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void insertar(@RequestBody ColorDTO dto){
         ModelMapper m=new ModelMapper();
         Color v=m.map(dto,Color.class);
         cS.insert(v);
     }
     @GetMapping ("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ColorDTO listarId(@PathVariable("id") Integer id) {
         ModelMapper m = new ModelMapper();
         ColorDTO dto = m.map(cS.listId(id), ColorDTO.class);
@@ -38,6 +42,7 @@ public class ColorController {
     }
 
     @PutMapping
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void modificar(@RequestBody ColorDTO dto){
         ModelMapper m=new ModelMapper();
         Color v=m.map(dto,Color.class);
@@ -45,6 +50,7 @@ public class ColorController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void eliminar(@PathVariable("id") Integer id){
         cS.delete(id);
     }
