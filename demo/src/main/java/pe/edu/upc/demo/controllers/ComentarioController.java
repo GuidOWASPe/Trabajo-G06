@@ -2,6 +2,7 @@ package pe.edu.upc.demo.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.demo.dtos.CantidadRostroFormaDTO;
 import pe.edu.upc.demo.dtos.ComentarioDTO;
@@ -15,7 +16,6 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/comentarios")
-
 public class ComentarioController {
     @Autowired
     private IComentarioService cT;
@@ -53,7 +53,9 @@ public class ComentarioController {
         cT.delete(id);
     }
 
-    @GetMapping("/comentariosnegativos")
+
+    @GetMapping("/ListarCantidadComentariosNegativos")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public List<ComentariosNegativosFrecuentesDTO> listarComentariosNegativosFrecuentes(){
         List<String[]>lista= cT.listarComentariosNegativosFrecuentes();
         List<ComentariosNegativosFrecuentesDTO> listaDTO = new ArrayList<>();

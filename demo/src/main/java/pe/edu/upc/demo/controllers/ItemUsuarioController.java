@@ -2,11 +2,14 @@ package pe.edu.upc.demo.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.demo.dtos.ItemUsuarioDTO;
+import pe.edu.upc.demo.dtos.ItemsMasUsadosDTO;
 import pe.edu.upc.demo.entities.ItemUsuario;
 import pe.edu.upc.demo.serviceinterfaces.IItemUsuarioService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -51,4 +54,19 @@ public class ItemUsuarioController {
     public void eliminar(@PathVariable("id") Integer id){
         iS.delete(id);
     }
+
+    @GetMapping("/ListarItemConMasUsos")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public List<ItemsMasUsadosDTO> itemsMasUsados() {
+        List<String[]> lista = iS.itemsMasUsadosPorUsuario();
+        List<ItemsMasUsadosDTO> listaDTO = new ArrayList<>();
+        for (String[] columna : lista) {
+            ItemsMasUsadosDTO dto = new ItemsMasUsadosDTO();
+            dto.setNombreItem(columna[0]);
+            dto.setNrUsos(Integer.parseInt(columna[1]));
+            listaDTO.add(dto);
+        }
+        return listaDTO;
+    }
+
 }

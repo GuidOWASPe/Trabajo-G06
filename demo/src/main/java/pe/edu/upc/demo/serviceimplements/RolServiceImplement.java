@@ -18,7 +18,7 @@ public class RolServiceImplement implements IRolService {
     public void insert(Rol v) {Rl.save(v);}
 
     @Override
-    public Rol listId(int id) {return Rl.findById(id).orElse(new Rol());}
+    public Rol listId(Long id) {return Rl.findById(id).orElse(new Rol());}
 
     @Override
     public void update(Rol v) {
@@ -26,5 +26,10 @@ public class RolServiceImplement implements IRolService {
     }
 
     @Override
-    public void delete(int id) {Rl.deleteById(id);}
+    public void delete(Long id) {Rl.deleteById(id);}
+
+    @Override
+    public List<Rol> findByNombre(String nombre) {
+        return Rl.findByNombre(nombre);
+    }
 }

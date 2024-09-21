@@ -2,6 +2,7 @@ package pe.edu.upc.demo.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.demo.dtos.CantidadEstiloColorFormaDTO;
 import pe.edu.upc.demo.dtos.CantidadRostroFormaDTO;
@@ -55,7 +56,8 @@ public class RostroController {
         rS.delete(id);
     }
 
-    @GetMapping("/rostrosformas")
+    @GetMapping("/CantidadRostroSegunForma")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public List<CantidadRostroFormaDTO> cantidadRostrosForma(){
         List<String[]>lista= rS.cantidadRostrosForma();
         List<CantidadRostroFormaDTO> listaDTO = new ArrayList<>();

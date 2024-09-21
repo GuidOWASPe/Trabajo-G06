@@ -1,24 +1,23 @@
 package pe.edu.upc.demo.dtos;
 
-import java.time.LocalDate;
 
 public class RolDTO {
-    private int idRol;
-    private String Nombre;
+    private Long idRol;
+    private String nombre;
 
-    public int getIdRol() {
+    public Long getIdRol() {
         return idRol;
     }
 
-    public void setIdRol(int idRol) {
+    public void setIdRol(Long idRol) {
         this.idRol = idRol;
     }
 
     public String getNombre() {
-        return Nombre;
+        return nombre;
     }
 
     public void setNombre(String nombre) {
-        Nombre = nombre;
+        this.nombre = nombre;
     }
 }

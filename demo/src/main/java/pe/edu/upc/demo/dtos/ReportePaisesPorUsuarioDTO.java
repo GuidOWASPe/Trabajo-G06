@@ -1,6 +1,6 @@
 package pe.edu.upc.demo.dtos;
 
-public class ReporteItemsPorUsuarioDTO {
+public class ReportePaisesPorUsuarioDTO {
     private String paisUsuario;
     private int cantidad;
 
@@ -19,4 +19,5 @@ public class ReporteItemsPorUsuarioDTO {
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
     }
+
 }
