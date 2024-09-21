@@ -2,6 +2,7 @@ package pe.edu.upc.demo.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.demo.dtos.ItemDTO;
 import pe.edu.upc.demo.dtos.ItemsMasUsadosDTO;
@@ -56,6 +57,7 @@ public class ItemController {
 
 
     @GetMapping("/ItemsMasUsadoPorUsuarios")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public List<MaxNroUsosItemDTO> maxNroUsos() {
         List<String[]> lista = iR.maxNroUsos();
         List<MaxNroUsosItemDTO> listaDTO = new ArrayList<>();

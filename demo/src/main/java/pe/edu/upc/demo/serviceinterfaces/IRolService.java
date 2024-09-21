@@ -7,7 +7,8 @@ import java.util.List;
 public interface IRolService {
     public List<Rol> list();
     public void insert(Rol Rl);
-    public Rol listId(int id);
+    public Rol listId(Long id);
     public void update(Rol Rl);
-    public void delete(int id);
+    public void delete(Long id);
+    public List<Rol> findByNombre(String nombre);
 }

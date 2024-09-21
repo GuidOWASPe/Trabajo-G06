@@ -1,14 +1,14 @@
 package pe.edu.upc.demo.dtos;
 
-
+import jakarta.persistence.*;
 import pe.edu.upc.demo.entities.Rol;
 
 import java.time.LocalDate;
 
 public class UsuarioDTO {
-    private int idUsuario;
-    private String nicknameUsuario;
-    private String contraseniaUsuario;
+    private Long idUsuario;
+    private String username;
+    private String password;
     private String correoUsuario;
     private LocalDate fechaNacimientoUsuario;
     private LocalDate fechaRegistroUsuario;
@@ -16,29 +16,30 @@ public class UsuarioDTO {
     private String paisUsuario;
     private String sexoUsuario;
     private Boolean enabled;
+    private Rol rol;
 
-    public int getIdUsuario() {
+    public Long getIdUsuario() {
         return idUsuario;
     }
 
-    public void setIdUsuario(int idUsuario) {
+    public void setIdUsuario(Long idUsuario) {
         this.idUsuario = idUsuario;
     }
 
-    public String getNicknameUsuario() {
-        return nicknameUsuario;
+    public String getUsername() {
+        return username;
     }
 
-    public void setNicknameUsuario(String nicknameUsuario) {
-        this.nicknameUsuario = nicknameUsuario;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public String getContraseniaUsuario() {
-        return contraseniaUsuario;
+    public String getPassword() {
+        return password;
     }
 
-    public void setContraseniaUsuario(String contraseniaUsuario) {
-        this.contraseniaUsuario = contraseniaUsuario;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getCorreoUsuario() {
@@ -95,5 +96,13 @@ public class UsuarioDTO {
 
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
+    }
+
+    public Rol getRol() {
+        return rol;
+    }
+
+    public void setRol(Rol rol) {
+        this.rol = rol;
     }
 }

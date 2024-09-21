@@ -3,6 +3,8 @@ package pe.edu.upc.demo.entities;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.sql.Array;
+import java.util.ArrayList;
 import java.util.List;
 import java.time.LocalDate;
 
@@ -11,10 +13,10 @@ import java.time.LocalDate;
 public class Usuario implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idUsuario;
-    @Column(name = "username",length = 100 , unique = true)
+    private Long idUsuario;
+    @Column(name = "username",length = 100 , unique = true, nullable = false)
     private String username;
-    @Column(name = "password",length = 100)
+    @Column(name = "password",length = 200, nullable = false)
     private String password;
     @Column(name = "correoUsuario",nullable = false)
     private String correoUsuario;
@@ -30,14 +32,14 @@ public class Usuario implements Serializable {
     private String sexoUsuario;
     private Boolean enabled;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
-    private List<Rol> roles;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_rol", nullable = false)
+    private Rol rol;
 
     public Usuario() {
     }
 
-    public Usuario(int idUsuario, String username, String password, String correoUsuario, LocalDate fechaNacimientoUsuario, LocalDate fechaRegistroUsuario, String fotoPerfilUsuario, String paisUsuario, String sexoUsuario, Boolean enabled, List<Rol> roles) {
+    public Usuario(Long idUsuario, String username, String password, String correoUsuario, LocalDate fechaNacimientoUsuario, LocalDate fechaRegistroUsuario, String fotoPerfilUsuario, String paisUsuario, String sexoUsuario, Boolean enabled, Rol rol) {
         this.idUsuario = idUsuario;
         this.username = username;
         this.password = password;
@@ -48,14 +50,14 @@ public class Usuario implements Serializable {
         this.paisUsuario = paisUsuario;
         this.sexoUsuario = sexoUsuario;
         this.enabled = enabled;
-        this.roles = roles;
+        this.rol = rol;
     }
 
-    public int getIdUsuario() {
+    public Long getIdUsuario() {
         return idUsuario;
     }
 
-    public void setIdUsuario(int idUsuario) {
+    public void setIdUsuario(Long idUsuario) {
         this.idUsuario = idUsuario;
     }
 
@@ -83,20 +85,20 @@ public class Usuario implements Serializable {
         this.correoUsuario = correoUsuario;
     }
 
-    public LocalDate getFechaRegistroUsuario() {
-        return fechaRegistroUsuario;
-    }
-
-    public void setFechaRegistroUsuario(LocalDate fechaRegistroUsuario) {
-        this.fechaRegistroUsuario = fechaRegistroUsuario;
-    }
-
     public LocalDate getFechaNacimientoUsuario() {
         return fechaNacimientoUsuario;
     }
 
     public void setFechaNacimientoUsuario(LocalDate fechaNacimientoUsuario) {
         this.fechaNacimientoUsuario = fechaNacimientoUsuario;
+    }
+
+    public LocalDate getFechaRegistroUsuario() {
+        return fechaRegistroUsuario;
+    }
+
+    public void setFechaRegistroUsuario(LocalDate fechaRegistroUsuario) {
+        this.fechaRegistroUsuario = fechaRegistroUsuario;
     }
 
     public String getFotoPerfilUsuario() {
@@ -131,11 +133,11 @@ public class Usuario implements Serializable {
         this.enabled = enabled;
     }
 
-    public List<Rol> getRoles() {
-        return roles;
+    public Rol getRol() {
+        return rol;
     }
 
-    public void setRoles(List<Rol> roles) {
-        this.roles = roles;
+    public void setRol(Rol rol) {
+        this.rol = rol;
     }
 }

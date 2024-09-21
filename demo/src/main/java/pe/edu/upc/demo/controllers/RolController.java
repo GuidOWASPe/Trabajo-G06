@@ -2,6 +2,7 @@ package pe.edu.upc.demo.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.demo.dtos.RolDTO;
 import pe.edu.upc.demo.entities.Rol;
@@ -31,7 +32,7 @@ public class RolController {
         Rl.insert(v);
     }
     @GetMapping ("/{id}")
-    public RolDTO listarId(@PathVariable("id") Integer id) {
+    public RolDTO listarId(@PathVariable("id") Long id) {
         ModelMapper m = new ModelMapper();
         RolDTO dto = m.map(Rl.listId(id), RolDTO.class);
         return dto;
@@ -45,7 +46,7 @@ public class RolController {
     }
 
     @DeleteMapping("/{id}")
-    public void eliminar(@PathVariable("id") Integer id){
+    public void eliminar(@PathVariable("id") Long id){
         Rl.delete(id);
     }
 }

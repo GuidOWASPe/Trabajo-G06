@@ -7,19 +7,18 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import pe.edu.upc.demo.entities.Rol;
 import pe.edu.upc.demo.entities.Usuario;
+import pe.edu.upc.demo.repositories.IRolRepository;
 import pe.edu.upc.demo.repositories.IUsuarioRepository;
 
 import java.util.ArrayList;
 import java.util.List;
 
-
-//Clase 2
 @Service
 public class JwtUserDetailsService implements UserDetailsService {
     @Autowired
     private IUsuarioRepository repo;
-
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -29,14 +28,24 @@ public class JwtUserDetailsService implements UserDetailsService {
             throw new UsernameNotFoundException(String.format("User not exists", username));
         }
 
-        List<GrantedAuthority> roles = new ArrayList<>();
+        Rol rol = user.getRol();
 
-        user.getRoles().forEach(rol -> {
-            roles.add(new SimpleGrantedAuthority(rol.getNombre()));
-        });
+        List<GrantedAuthority> authorities = new ArrayList<>();
 
-        UserDetails ud = new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), user.getEnabled(), true, true, true, roles);
+        authorities.add(new SimpleGrantedAuthority(rol.getNombre()));
+
+        UserDetails ud = new org.springframework.security.core.userdetails.User(
+                user.getUsername(),
+                user.getPassword(),
+                user.getEnabled(),
+                true, true, true,
+                authorities
+        );
 
         return ud;
+    }
+
+    public Usuario getUserByUsername(String username) {
+        return repo.findOneByUsername(username);
     }
 }

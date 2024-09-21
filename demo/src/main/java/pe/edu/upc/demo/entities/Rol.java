@@ -4,51 +4,41 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "Rol")
-public class Rol implements Serializable {
+public class Rol{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idRol;
-    @Column(name = "nombre",nullable = false,length = 100)
-    private String Nombre;
+    private Long idRol;
+    @Column(name = "nombre", nullable = false, length = 100)
+    private String nombre;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    @JsonIgnore
-    private Usuario usEr;
 
     public Rol() {
     }
 
-    public Rol(int idRol, String nombre, Usuario usEr) {
+    public Rol(Long idRol, String nombre) {
         this.idRol = idRol;
-        Nombre = nombre;
-        this.usEr = usEr;
+        this.nombre = nombre;
     }
 
-    public int getIdRol() {
+    public Long getIdRol() {
         return idRol;
     }
 
-    public void setIdRol(int idRol) {
+    public void setIdRol(Long idRol) {
         this.idRol = idRol;
     }
 
     public String getNombre() {
-        return Nombre;
+        return nombre;
     }
 
     public void setNombre(String nombre) {
-        Nombre = nombre;
+        this.nombre = nombre;
     }
 
-    public Usuario getUsEr() {
-        return usEr;
-    }
 
-    public void setUsEr(Usuario usEr) {
-        this.usEr = usEr;
-    }
 }

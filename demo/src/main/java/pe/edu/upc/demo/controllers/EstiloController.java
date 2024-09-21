@@ -2,6 +2,7 @@ package pe.edu.upc.demo.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.demo.dtos.CantidadEstiloColorFormaDTO;
 import pe.edu.upc.demo.dtos.EstiloDTO;
@@ -54,6 +55,7 @@ public class EstiloController {
 
 
     @GetMapping("/PopularidadFormasYColoresEstilo")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public List<CantidadEstiloColorFormaDTO> cantidadEstiloColorForma(){
         List<String[]>lista= eS.cantidadEstiloColorForma();
         List<CantidadEstiloColorFormaDTO> listaDTO = new ArrayList<>();
@@ -69,6 +71,7 @@ public class EstiloController {
 
 
     @GetMapping("/CantidadEstilosPorUsuario")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public List<ReporteEstilosPorUsuarioDTO> cantidadEstilosPorUsuario(){
         List<String[]>lista= eS.cantidadEstilosPorUsuario();
         List<ReporteEstilosPorUsuarioDTO> listaDTO = new ArrayList<>();

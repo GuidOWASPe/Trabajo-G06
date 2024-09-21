@@ -2,6 +2,7 @@ package pe.edu.upc.demo.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.demo.dtos.EstiloItemDTO;
 import pe.edu.upc.demo.dtos.EstiloUsuarioConPCDTO;
@@ -53,6 +54,7 @@ public class EstiloUsuarioController {
 
 
     @GetMapping("/ListarEstiloDeUsuarioConPeorCalifiacion")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public List<EstiloUsuarioConPCDTO> estiloUsuarioConPeorCalifiacion(){
         List<String[]> lista=eS.estiloUsuarioConPC();
         List<EstiloUsuarioConPCDTO> listaDTO=new ArrayList<>();

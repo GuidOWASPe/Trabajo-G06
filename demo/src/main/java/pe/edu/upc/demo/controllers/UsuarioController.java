@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/usuarios")
-@PreAuthorize("hasAuthority('ADMINISTRADOR')")
+@PreAuthorize("hasAuthority('ADMIN')")
 public class UsuarioController {
     @Autowired
     private IUsuarioService uS;
@@ -43,7 +43,7 @@ public class UsuarioController {
     }
 
     @GetMapping ("/{id}")
-    public UsuarioDTO listarId(@PathVariable("id") Integer id) {
+    public UsuarioDTO listarId(@PathVariable("id") Long id) {
         ModelMapper m = new ModelMapper();
         UsuarioDTO dto = m.map(uS.listId(id), UsuarioDTO.class);
         return dto;
@@ -53,12 +53,15 @@ public class UsuarioController {
     public void modificar(@RequestBody UsuarioDTO dto){
         ModelMapper m=new ModelMapper();
         Usuario u=m.map(dto,Usuario.class);
+        String encodedPassword = passwordEncoder.encode(u.getPassword());
+        u.setPassword(encodedPassword);
         uS.update(u);
     }
     @DeleteMapping("/{id}")
-    public void eliminar(@PathVariable("id") Integer id){
+    public void eliminar(@PathVariable("id") Long id){
         uS.delete(id);
     }
+
 
     @GetMapping("/CantidadUsuariosPorGeneroSegunRangoEdad")
     public List<CantidadUsuarioSegunEdadGeneroDTO> usuarioSegunEdadGenero(){

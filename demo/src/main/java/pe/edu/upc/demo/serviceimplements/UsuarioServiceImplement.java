@@ -12,45 +12,45 @@ import java.util.List;
 @Service
 public class UsuarioServiceImplement implements IUsuarioService {
     @Autowired
-    private IUsuarioRepository uS;
+    private IUsuarioRepository uR;
 
     @Override
     public List<Usuario> list() {
-        return uS.findAll();
+        return uR.findAll();
     }
 
     @Override
     public void insert(Usuario tu) {
-        uS.save(tu);
+        uR.save(tu);
     }
-
-    @Override
-    public Usuario listId(int id) {return uS.findById(id).orElse(new Usuario());}
 
     @Override
     public void update(Usuario v) {
-        uS.save(v);
+        uR.save(v);
     }
 
     @Override
-    public void delete(int id) {
-        uS.deleteById(id);
+    public void delete(Long idUsuario) {
+        uR.deleteById(idUsuario);
     }
 
-    public List<String[]> cantidadUsuarioEdadGenero() {return uS.cantidadUsuarioEdadGenero();}
+    @Override
+    public Usuario listId(Long idUsuario) {return uR.findById(idUsuario).orElse(new Usuario());}
+
+    public List<String[]> cantidadUsuarioEdadGenero() {return uR.cantidadUsuarioEdadGenero();}
 
     @Override
     public List<String[]> usuariosporgeneroservice() {
-        return uS.usuariosporgenero();
+        return uR.usuariosporgenero();
     }
 
     @Override
     public List<String[]> mesderegistrosusuarios() {
-        return uS.mesderegistrosusuarios();
+        return uR.mesderegistrosusuarios();
     }
 
     @Override
     public List<String[]> PaisesPorUsuario() {
-        return uS.PaisesPorUsuario();
+        return uR.PaisesPorUsuario();
     }
 }
