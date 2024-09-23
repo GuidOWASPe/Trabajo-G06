@@ -16,10 +16,13 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/estiloUsuario")
+@PreAuthorize("hasAuthority('USUARIO') or hasAuthority('ADMIN')")
 public class EstiloUsuarioController {
     @Autowired
     private IEstiloUsuarioService eS;
+
     @GetMapping
+    @PreAuthorize("hasAuthority('ADMIN')")
     public List<EstiloUsuarioDTO> listar(){
 
         return eS.list().stream().map(x->{
@@ -28,12 +31,14 @@ public class EstiloUsuarioController {
         }).collect(Collectors.toList());
     }
     @PostMapping
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('USUARIO')")
     public void insertar(@RequestBody EstiloUsuarioDTO dto){
         ModelMapper m=new ModelMapper();
         EstiloUsuario v=m.map(dto,EstiloUsuario.class);
         eS.insert(v);
     }
     @GetMapping ("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public EstiloUsuarioDTO listarId(@PathVariable("id") Integer id) {
         ModelMapper m = new ModelMapper();
         EstiloUsuarioDTO dto = m.map(eS.listId(id), EstiloUsuarioDTO.class);
@@ -41,6 +46,7 @@ public class EstiloUsuarioController {
     }
 
     @PutMapping
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void modificar(@RequestBody EstiloUsuarioDTO dto){
         ModelMapper m=new ModelMapper();
         EstiloUsuario v=m.map(dto,EstiloUsuario.class);
@@ -48,6 +54,7 @@ public class EstiloUsuarioController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void eliminar(@PathVariable("id") Integer id){
         eS.delete(id);
     }

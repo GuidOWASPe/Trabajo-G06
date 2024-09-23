@@ -2,6 +2,7 @@ package pe.edu.upc.demo.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.demo.dtos.FormaDTO;
 import pe.edu.upc.demo.entities.Forma;
@@ -12,12 +13,14 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/formas")
+@PreAuthorize("hasAuthority('USUARIO') or hasAuthority('ADMIN')")
 public class FormaController {
 
     @Autowired
     private IFormaService fS;
 
     @GetMapping
+    @PreAuthorize("hasAuthority('ADMIN')")
     public List<FormaDTO> listar(){
 
         return fS.list().stream().map(x->{
@@ -26,12 +29,14 @@ public class FormaController {
         }).collect(Collectors.toList());
     }
     @PostMapping
+    @PreAuthorize("hasAuthority('USUARIO') or hasAuthority('ADMIN')")
     public void insertar(@RequestBody FormaDTO dto){
         ModelMapper m=new ModelMapper();
         Forma v=m.map(dto,Forma.class);
         fS.insert(v);
     }
     @GetMapping ("/{id}")
+    @PreAuthorize("hasAuthority('USUARIO') or hasAuthority('ADMIN')")
     public FormaDTO listarId(@PathVariable("id") Integer id) {
         ModelMapper m = new ModelMapper();
         FormaDTO dto = m.map(fS.listId(id), FormaDTO.class);
@@ -39,6 +44,7 @@ public class FormaController {
     }
 
     @PutMapping
+    @PreAuthorize("hasAuthority('USUARIO') or hasAuthority('ADMIN')")
     public void modificar(@RequestBody FormaDTO dto){
         ModelMapper m=new ModelMapper();
         Forma v=m.map(dto,Forma.class);
@@ -46,6 +52,7 @@ public class FormaController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('USUARIO') or hasAuthority('ADMIN')")
     public void eliminar(@PathVariable("id") Integer id){
         fS.delete(id);
     }

@@ -16,11 +16,13 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/items")
+@PreAuthorize("hasAuthority('ADMIN')")
 public class ItemController {
     @Autowired
     private IItemService iR;
 
     @GetMapping
+    @PreAuthorize("hasAuthority('ADMIN')")
     public List<ItemDTO> listar() {
 
         return iR.list().stream().map(x -> {
@@ -30,6 +32,7 @@ public class ItemController {
     }
 
     @PostMapping
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void insertar(@RequestBody ItemDTO dto) {
         ModelMapper m = new ModelMapper();
         Item v = m.map(dto, Item.class);
@@ -37,6 +40,7 @@ public class ItemController {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ItemDTO listarId(@PathVariable("id") Integer id) {
         ModelMapper m = new ModelMapper();
         ItemDTO dto = m.map(iR.listId(id), ItemDTO.class);
@@ -44,6 +48,7 @@ public class ItemController {
     }
 
     @PutMapping
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void modificar(@RequestBody ItemDTO dto) {
         ModelMapper m = new ModelMapper();
         Item v = m.map(dto, Item.class);
@@ -51,6 +56,7 @@ public class ItemController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void eliminar(@PathVariable("id") Integer id) {
         iR.delete(id);
     }

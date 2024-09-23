@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/usuarios")
-@PreAuthorize("hasAuthority('ADMIN')")
+@PreAuthorize("hasAuthority('ADMIN') or hasAuthority('USUARIO')")
 public class UsuarioController {
     @Autowired
     private IUsuarioService uS;
@@ -25,6 +25,7 @@ public class UsuarioController {
     private PasswordEncoder passwordEncoder;
 
     @GetMapping
+    @PreAuthorize("hasAuthority('ADMIN')")
     public List<UsuarioDTO> listar(){
 
         return uS.list().stream().map(x->{
@@ -34,6 +35,7 @@ public class UsuarioController {
     }
 
     @PostMapping
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('USUARIO')")
     public void insertar(@RequestBody UsuarioDTO dto){
         ModelMapper m=new ModelMapper();
         Usuario u=m.map(dto, Usuario.class);
@@ -43,6 +45,7 @@ public class UsuarioController {
     }
 
     @GetMapping ("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public UsuarioDTO listarId(@PathVariable("id") Long id) {
         ModelMapper m = new ModelMapper();
         UsuarioDTO dto = m.map(uS.listId(id), UsuarioDTO.class);
@@ -50,6 +53,7 @@ public class UsuarioController {
     }
 
     @PutMapping
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('USUARIO')")
     public void modificar(@RequestBody UsuarioDTO dto){
         ModelMapper m=new ModelMapper();
         Usuario u=m.map(dto,Usuario.class);
@@ -58,6 +62,7 @@ public class UsuarioController {
         uS.update(u);
     }
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('USUARIO')")
     public void eliminar(@PathVariable("id") Long id){
         uS.delete(id);
     }
