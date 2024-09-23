@@ -4,6 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.demo.dtos.CantidadRostroFormaDTO;
 import pe.edu.upc.demo.dtos.ComentarioDTO;
 import pe.edu.upc.demo.dtos.ComentariosNegativosFrecuentesDTO;
 import pe.edu.upc.demo.entities.Comentario;
@@ -27,6 +28,7 @@ public class ComentarioController {
             return m.map(x,ComentarioDTO.class);
         }).collect(Collectors.toList());
     }
+  
     @PostMapping
     @PreAuthorize("hasAuthority('USUARIO') or hasAuthority('ADMIN')")
     public void insertar(@RequestBody ComentarioDTO dto){

@@ -34,6 +34,7 @@ public class ColorController {
         cS.insert(v);
     }
     @GetMapping ("/{id}")
+
     @PreAuthorize("hasAuthority('ADMIN')")
     public ColorDTO listarId(@PathVariable("id") Integer id) {
         ModelMapper m = new ModelMapper();

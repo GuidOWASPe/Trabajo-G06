@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.demo.dtos.CantidadEstiloColorFormaDTO;
 import pe.edu.upc.demo.dtos.EstiloDTO;
 import pe.edu.upc.demo.dtos.ReporteEstilosPorUsuarioDTO;
+import pe.edu.upc.demo.dtos.ReportePaisesPorUsuarioDTO;
 import pe.edu.upc.demo.entities.Estilo;
 import pe.edu.upc.demo.serviceinterfaces.IEstiloService;
 
