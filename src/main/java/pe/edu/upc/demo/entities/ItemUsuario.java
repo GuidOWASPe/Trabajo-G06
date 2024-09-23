@@ -12,7 +12,7 @@ public class ItemUsuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idItemFavorito;
-    @Column(name = "itemFavorito", nullable = false)
+    @Column(name = "fechaitemFavorito", nullable = true)
     private Date fechaItemFavorito;
     @Column(name = "calificacion", nullable = false)
     private int calificacion;

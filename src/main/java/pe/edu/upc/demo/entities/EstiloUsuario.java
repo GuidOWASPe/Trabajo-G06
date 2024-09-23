@@ -10,7 +10,7 @@ public class EstiloUsuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idEstiloFav;
-    @Column(name = "fechaEstiloFav", nullable = false)
+    @Column(name = "fechaEstiloFav", nullable = true)
     private LocalDate fechaEstiloFav;
     @Column(name = "calificacionEstilo", nullable = false)
     private int calificacion;
