@@ -2,6 +2,7 @@ package pe.edu.upc.demo.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.demo.dtos.EstiloItemDTO;
 import pe.edu.upc.demo.entities.EstiloItem;
@@ -16,6 +17,7 @@ public class EstiloItemController {
     private IEstiloItemService eS;
 
     @GetMapping
+    @PreAuthorize("hasAuthority('USUARIO') or hasAuthority('ADMIN')")
     public List<EstiloItemDTO> listar(){
         return eS.list().stream().map(x->{
             ModelMapper m=new ModelMapper();
@@ -23,12 +25,14 @@ public class EstiloItemController {
         }).collect(Collectors.toList());
     }
     @PostMapping
+    @PreAuthorize("hasAuthority('USUARIO') or hasAuthority('ADMIN')")
     public void insertar(@RequestBody EstiloItemDTO dto){
         ModelMapper m=new ModelMapper();
         EstiloItem e=m.map(dto,EstiloItem.class);
         eS.insert(e);
     }
     @GetMapping ("/{id}")
+    @PreAuthorize("hasAuthority('USUARIO') or hasAuthority('ADMIN')")
     public EstiloItemDTO listarId(@PathVariable("id") Integer id) {
         ModelMapper m = new ModelMapper();
         EstiloItemDTO dto = m.map(eS.listId(id), EstiloItemDTO.class);
@@ -36,6 +40,7 @@ public class EstiloItemController {
     }
 
     @PutMapping
+    @PreAuthorize("hasAuthority('USUARIO') or hasAuthority('ADMIN')")
     public void modificar(@RequestBody EstiloItemDTO dto){
         ModelMapper m=new ModelMapper();
         EstiloItem v=m.map(dto,EstiloItem.class);
@@ -43,6 +48,7 @@ public class EstiloItemController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('USUARIO') or hasAuthority('ADMIN')")
     public void eliminar(@PathVariable("id") Integer id){
         eS.delete(id);
     }
