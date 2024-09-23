@@ -21,6 +21,7 @@ public class ItemUsuarioController {
     private IItemUsuarioService iS;
 
     @GetMapping
+    @PreAuthorize("hasAuthority('ADMIN')")
     public List<ItemUsuarioDTO> listar(){
 
         return iS.list().stream().map(v-> {
@@ -30,6 +31,7 @@ public class ItemUsuarioController {
     }
 
     @PostMapping
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('USUARIO')")
     public void insertar(@RequestBody ItemUsuarioDTO dto){
         ModelMapper m = new ModelMapper();
         ItemUsuario v = m.map(dto, ItemUsuario.class);
@@ -37,6 +39,7 @@ public class ItemUsuarioController {
     }
 
     @GetMapping ("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ItemUsuarioDTO listarId(@PathVariable("id") Integer id) {
         ModelMapper m = new ModelMapper();
         ItemUsuarioDTO dto = m.map(iS.listId(id), ItemUsuarioDTO.class);
@@ -44,6 +47,7 @@ public class ItemUsuarioController {
     }
 
     @PutMapping
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void modificar(@RequestBody ItemUsuarioDTO dto){
         ModelMapper m=new ModelMapper();
         ItemUsuario v=m.map(dto,ItemUsuario.class);
@@ -51,6 +55,7 @@ public class ItemUsuarioController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void eliminar(@PathVariable("id") Integer id){
         iS.delete(id);
     }
