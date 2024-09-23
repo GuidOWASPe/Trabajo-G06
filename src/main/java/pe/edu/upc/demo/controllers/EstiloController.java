@@ -22,6 +22,7 @@ public class EstiloController {
     private IEstiloService eS;
 
     @GetMapping
+    @PreAuthorize("hasAuthority('USUARIO') or hasAuthority('ADMIN')")
     public List<EstiloDTO> listar(){
         return eS.list().stream().map(x->{
             ModelMapper m=new ModelMapper();
@@ -29,12 +30,14 @@ public class EstiloController {
         }).collect(Collectors.toList());
     }
     @PostMapping
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void insertar(@RequestBody EstiloDTO dto){
         ModelMapper m=new ModelMapper();
         Estilo e=m.map(dto,Estilo.class);
         eS.insert(e);
     }
     @GetMapping ("/{id}")
+    @PreAuthorize("hasAuthority('USUARIO') or hasAuthority('ADMIN')")
     public EstiloDTO listarId(@PathVariable("id") Integer id) {
         ModelMapper m = new ModelMapper();
         EstiloDTO dto = m.map(eS.listId(id), EstiloDTO.class);
@@ -42,6 +45,7 @@ public class EstiloController {
     }
 
     @PutMapping
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void modificar(@RequestBody EstiloDTO dto){
         ModelMapper m=new ModelMapper();
         Estilo v=m.map(dto,Estilo.class);
@@ -49,6 +53,7 @@ public class EstiloController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void eliminar(@PathVariable("id") Integer id){
         eS.delete(id);
     }

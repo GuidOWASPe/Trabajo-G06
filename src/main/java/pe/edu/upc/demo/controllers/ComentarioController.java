@@ -21,13 +21,16 @@ public class ComentarioController {
     private IComentarioService cT;
 
     @GetMapping
+    @PreAuthorize("hasAuthority('USUARIO') or hasAuthority('ADMIN')")
     public List<ComentarioDTO> listar() {
         return cT.list().stream().map(x->{
             ModelMapper m=new ModelMapper();
             return m.map(x,ComentarioDTO.class);
         }).collect(Collectors.toList());
     }
+  
     @PostMapping
+    @PreAuthorize("hasAuthority('USUARIO') or hasAuthority('ADMIN')")
     public void insertar(@RequestBody ComentarioDTO dto){
         ModelMapper m=new ModelMapper();
         Comentario u=m.map(dto, Comentario.class);
@@ -35,6 +38,7 @@ public class ComentarioController {
     }
 
     @GetMapping ("/{id}")
+    @PreAuthorize("hasAuthority('USUARIO') or hasAuthority('ADMIN')")
     public ComentarioDTO listarId(@PathVariable("id") Integer id) {
         ModelMapper m = new ModelMapper();
         ComentarioDTO dto = m.map(cT.listId(id), ComentarioDTO.class);
@@ -42,6 +46,7 @@ public class ComentarioController {
     }
 
     @PutMapping
+    @PreAuthorize("hasAuthority('USUARIO') or hasAuthority('ADMIN')")
     public void modificar(@RequestBody ComentarioDTO dto){
         ModelMapper m=new ModelMapper();
         Comentario u=m.map(dto,Comentario.class);
@@ -49,6 +54,7 @@ public class ComentarioController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('USUARIO') or hasAuthority('ADMIN')")
     public void eliminar(@PathVariable("id") Integer id){
         cT.delete(id);
     }

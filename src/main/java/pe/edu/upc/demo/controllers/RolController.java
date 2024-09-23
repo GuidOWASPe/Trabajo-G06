@@ -13,13 +13,11 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/roles")
-@PreAuthorize("hasAuthority('ADMIN')")
 public class RolController {
     @Autowired
     private IRolService Rl;
 
     @GetMapping
-    @PreAuthorize("hasAuthority('ADMIN')")
     public List<RolDTO> listar(){
 
         return Rl.list().stream().map(x->{
@@ -28,14 +26,12 @@ public class RolController {
         }).collect(Collectors.toList());
     }
     @PostMapping
-    @PreAuthorize("hasAuthority('ADMIN')")
     public void insertar(@RequestBody RolDTO dto){
         ModelMapper m=new ModelMapper();
         Rol v=m.map(dto,Rol.class);
         Rl.insert(v);
     }
     @GetMapping ("/{id}")
-    @PreAuthorize("hasAuthority('ADMIN')")
     public RolDTO listarId(@PathVariable("id") Long id) {
         ModelMapper m = new ModelMapper();
         RolDTO dto = m.map(Rl.listId(id), RolDTO.class);
@@ -43,7 +39,6 @@ public class RolController {
     }
 
     @PutMapping
-    @PreAuthorize("hasAuthority('ADMIN')")
     public void modificar(@RequestBody RolDTO dto){
         ModelMapper m=new ModelMapper();
         Rol v=m.map(dto,Rol.class);
@@ -51,7 +46,6 @@ public class RolController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAuthority('ADMIN')")
     public void eliminar(@PathVariable("id") Long id){
         Rl.delete(id);
     }
