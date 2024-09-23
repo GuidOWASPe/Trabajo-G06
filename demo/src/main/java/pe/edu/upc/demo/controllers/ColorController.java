@@ -18,7 +18,7 @@ public class ColorController {
     private IColorService cS;
 
     @GetMapping
-    @PreAuthorize("hasAuthority('USUARIO')")
+    @PreAuthorize("hasAuthority('USUARIO') or hasAuthority('ADMIN')")
     public List<ColorDTO> listar(){
 
         return cS.list().stream().map(x->{
