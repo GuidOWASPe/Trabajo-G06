@@ -62,10 +62,10 @@ public class ItemController {
     }
 
 
-    @GetMapping("/ItemsMasUsadoPorUsuarios")
+    @GetMapping("/ItemMasUsadoPorUsuario")
     @PreAuthorize("hasAuthority('ADMIN')")
-    public List<MaxNroUsosItemDTO> maxNroUsos() {
-        List<String[]> lista = iR.maxNroUsos();
+    public List<MaxNroUsosItemDTO> ItemMasUsado() {
+        List<String[]> lista = iR.ItemMasUsado();
         List<MaxNroUsosItemDTO> listaDTO = new ArrayList<>();
         for (String[] columna : lista) {
             MaxNroUsosItemDTO dto = new MaxNroUsosItemDTO();

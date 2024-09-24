@@ -9,8 +9,8 @@ import java.util.List;
 
 @Repository
 public interface IItemRepository extends JpaRepository<Item, Integer> {
-    @Query(value = "SELECT nombre_item, nr_usos\n" +
+    @Query(value = " SELECT nombre_item, nr_usos\n" +
             " FROM Item\n" +
             " WHERE nr_usos = (SELECT MAX(nr_usos) FROM Item);",nativeQuery = true)
-    public List<String[]> maxNroUsos();
+    public List<String[]> ItemMasUsado();
 }

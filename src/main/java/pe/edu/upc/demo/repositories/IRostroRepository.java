@@ -10,16 +10,15 @@ import java.util.List;
 @Repository
 public interface IRostroRepository extends JpaRepository<Rostro, Integer> {
 
-    @Query(value = " SELECT \n" +
-            "    r.nombre AS FormaDeRostro,\n" +
-            "    COUNT(R.id_rostro) AS CantidadRostros\n" +
-            " FROM \n" +
-            "    Forma F\n" +
-            " LEFT JOIN \n" +
-            "    Rostro r ON f.id_forma = r.id_forma\n" +
-            " GROUP BY \n" +
-            "    r.nombre\n" +
-            " ORDER BY \n" +
-            "    CantidadRostros DESC;\n", nativeQuery = true)
+    @Query(value = " SELECT \n " +
+            "                            f.nombre_forma AS FormaDeRostro,\n " +
+            "                            COUNT(R.id_rostro) AS CantidadRostros\n " +
+            "                         FROM \n " +
+            "                            Forma F\n " +
+            "                         LEFT JOIN \n " +
+            "                            Rostro r ON f.id_forma = r.id_forma\n " +
+            "                         GROUP BY \n " +
+            "                            f.nombre_forma\n " +
+            " \t\t\t\t\t\t\tLIMIT 3 ", nativeQuery = true)
     public List<String[]> cantidadRostroForma();
 }

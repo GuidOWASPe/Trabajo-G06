@@ -61,10 +61,10 @@ public class ItemUsuarioController {
         iS.delete(id);
     }
 
-    @GetMapping("/ListarItemConMasUsos")
+    @GetMapping("/ListarItemsPorNroUsos")
     @PreAuthorize("hasAuthority('ADMIN')")
-    public List<ItemsMasUsadosDTO> itemsMasUsados() {
-        List<String[]> lista = iS.itemsMasUsadosPorUsuario();
+    public List<ItemsMasUsadosDTO> ItemsPorNroUso() {
+        List<String[]> lista = iS.ItemsPorNroUso();
         List<ItemsMasUsadosDTO> listaDTO = new ArrayList<>();
         for (String[] columna : lista) {
             ItemsMasUsadosDTO dto = new ItemsMasUsadosDTO();

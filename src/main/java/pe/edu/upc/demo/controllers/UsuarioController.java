@@ -27,7 +27,6 @@ public class UsuarioController {
     @GetMapping
     @PreAuthorize("hasAuthority('ADMIN')")
     public List<UsuarioDTO> listar(){
-
         return uS.list().stream().map(x->{
             ModelMapper m=new ModelMapper();
             return m.map(x,UsuarioDTO.class);
@@ -61,6 +60,7 @@ public class UsuarioController {
         u.setPassword(encodedPassword);
         uS.update(u);
     }
+
     @DeleteMapping("/{id}")
     @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('USUARIO')")
     public void eliminar(@PathVariable("id") Long id){
@@ -69,6 +69,7 @@ public class UsuarioController {
 
 
     @GetMapping("/CantidadUsuariosPorGeneroSegunRangoEdad")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public List<CantidadUsuarioSegunEdadGeneroDTO> usuarioSegunEdadGenero(){
         List<String[]>lista= uS.cantidadUsuarioEdadGenero();
         List<CantidadUsuarioSegunEdadGeneroDTO> listaDTO = new ArrayList<>();
@@ -83,6 +84,7 @@ public class UsuarioController {
     }
 
     @GetMapping("/PorcentajeUsuariosPorGenero")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public List<PorcentUsuariosporGeneroDTO> usuariosporgenero(){
         List<String []>lista=uS.usuariosporgeneroservice();
         List<PorcentUsuariosporGeneroDTO>listDTO=new ArrayList<>();
@@ -97,6 +99,7 @@ public class UsuarioController {
     }
 
     @GetMapping("/PorcentajeUsuariosRegistradosPorMes")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public List<PorcentUsuariosMesDTO> usuariosregistrados(){
         List<String []>lista=uS.mesderegistrosusuarios();
         List<PorcentUsuariosMesDTO>listDTO=new ArrayList<>();
@@ -111,6 +114,7 @@ public class UsuarioController {
     }
 
     @GetMapping("/CantidadUsuariosPorPaises")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public List<ReportePaisesPorUsuarioDTO> PaisesPorUsuario(){
         List<String[]> lista= uS.PaisesPorUsuario();
         List<ReportePaisesPorUsuarioDTO> listaDTO = new ArrayList<>();

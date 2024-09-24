@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/estilosItems")
+@PreAuthorize("hasAuthority('USUARIO') or hasAuthority('ADMIN')")
 public class EstiloItemController {
     @Autowired
     private IEstiloItemService eS;

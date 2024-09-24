@@ -41,7 +41,7 @@ public class ItemUsuarioServiceImplement implements IItemUsuarioService {
     }
 
     @Override
-    public List<String[]> itemsMasUsadosPorUsuario() {
-        return iR.itemsMasUsadosPorUsuario();
+    public List<String[]> ItemsPorNroUso() {
+        return iR.ItemsPorNroUso();
     }
 }

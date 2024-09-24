@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/colores")
+@PreAuthorize("hasAuthority('USUARIO') or hasAuthority('ADMIN')")
 public class ColorController {
     @Autowired
     private IColorService cS;
@@ -20,12 +21,12 @@ public class ColorController {
     @GetMapping
     @PreAuthorize("hasAuthority('USUARIO') or hasAuthority('ADMIN')")
     public List<ColorDTO> listar(){
-
         return cS.list().stream().map(x->{
             ModelMapper m=new ModelMapper();
             return m.map(x,ColorDTO.class);
         }).collect(Collectors.toList());
     }
+
     @PostMapping
     @PreAuthorize("hasAuthority('ADMIN')")
     public void insertar(@RequestBody ColorDTO dto){
@@ -33,8 +34,8 @@ public class ColorController {
         Color v=m.map(dto,Color.class);
         cS.insert(v);
     }
-    @GetMapping ("/{id}")
 
+    @GetMapping ("/{id}")
     @PreAuthorize("hasAuthority('ADMIN')")
     public ColorDTO listarId(@PathVariable("id") Integer id) {
         ModelMapper m = new ModelMapper();

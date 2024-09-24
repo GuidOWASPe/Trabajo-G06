@@ -40,7 +40,7 @@ public class ItemServiceImplement implements IItemService {
     }
 
     @Override
-    public List<String[]> maxNroUsos() {return iR.maxNroUsos();}
+    public List<String[]> ItemMasUsado() {return iR.ItemMasUsado();}
 
 }
 

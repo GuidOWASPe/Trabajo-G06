@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/comentarios")
+@PreAuthorize("hasAuthority('USUARIO') or hasAuthority('ADMIN')")
 public class ComentarioController {
     @Autowired
     private IComentarioService cT;

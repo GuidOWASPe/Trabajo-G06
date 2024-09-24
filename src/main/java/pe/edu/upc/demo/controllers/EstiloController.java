@@ -17,6 +17,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/estilos")
+@PreAuthorize("hasAuthority('USUARIO') or hasAuthority('ADMIN')")
 public class EstiloController {
     @Autowired
     private IEstiloService eS;
@@ -29,6 +30,7 @@ public class EstiloController {
             return m.map(x, EstiloDTO.class);
         }).collect(Collectors.toList());
     }
+
     @PostMapping
     @PreAuthorize("hasAuthority('ADMIN')")
     public void insertar(@RequestBody EstiloDTO dto){
@@ -36,6 +38,7 @@ public class EstiloController {
         Estilo e=m.map(dto,Estilo.class);
         eS.insert(e);
     }
+
     @GetMapping ("/{id}")
     @PreAuthorize("hasAuthority('USUARIO') or hasAuthority('ADMIN')")
     public EstiloDTO listarId(@PathVariable("id") Integer id) {
