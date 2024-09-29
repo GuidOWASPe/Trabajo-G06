@@ -17,7 +17,7 @@ public interface IEstiloUsuarioRepository extends JpaRepository<EstiloUsuario, I
             " FROM \n" +
             "    estilo_usuario EU\n" +
             " JOIN \n" +
-            "    Usuario U ON EU.id_usuario = U.id_usuario\n" +
+            "    Usuarios U ON EU.id_usuario = U.id_usuario\n" +
             " JOIN \n" +
             "    Estilo E ON EU.id_estilo = E.id_estilo\n" +
             " WHERE \n" +
