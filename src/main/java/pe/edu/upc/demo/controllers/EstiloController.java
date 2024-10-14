@@ -2,12 +2,10 @@ package pe.edu.upc.demo.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.demo.dtos.CantidadEstiloColorFormaDTO;
 import pe.edu.upc.demo.dtos.EstiloDTO;
 import pe.edu.upc.demo.dtos.ReporteEstilosPorUsuarioDTO;
-import pe.edu.upc.demo.dtos.ReportePaisesPorUsuarioDTO;
 import pe.edu.upc.demo.entities.Estilo;
 import pe.edu.upc.demo.serviceinterfaces.IEstiloService;
 
@@ -17,13 +15,11 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/estilos")
-@PreAuthorize("hasAuthority('USUARIO') or hasAuthority('ADMIN')")
 public class EstiloController {
     @Autowired
     private IEstiloService eS;
 
     @GetMapping
-    @PreAuthorize("hasAuthority('USUARIO') or hasAuthority('ADMIN')")
     public List<EstiloDTO> listar(){
         return eS.list().stream().map(x->{
             ModelMapper m=new ModelMapper();
@@ -32,7 +28,6 @@ public class EstiloController {
     }
 
     @PostMapping
-    @PreAuthorize("hasAuthority('ADMIN')")
     public void insertar(@RequestBody EstiloDTO dto){
         ModelMapper m=new ModelMapper();
         Estilo e=m.map(dto,Estilo.class);
@@ -40,7 +35,6 @@ public class EstiloController {
     }
 
     @GetMapping ("/{id}")
-    @PreAuthorize("hasAuthority('USUARIO') or hasAuthority('ADMIN')")
     public EstiloDTO listarId(@PathVariable("id") Integer id) {
         ModelMapper m = new ModelMapper();
         EstiloDTO dto = m.map(eS.listId(id), EstiloDTO.class);
@@ -48,7 +42,6 @@ public class EstiloController {
     }
 
     @PutMapping
-    @PreAuthorize("hasAuthority('ADMIN')")
     public void modificar(@RequestBody EstiloDTO dto){
         ModelMapper m=new ModelMapper();
         Estilo v=m.map(dto,Estilo.class);
@@ -56,14 +49,12 @@ public class EstiloController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAuthority('ADMIN')")
     public void eliminar(@PathVariable("id") Integer id){
         eS.delete(id);
     }
 
 
     @GetMapping("/PopularidadFormasYColoresEstilo")
-    @PreAuthorize("hasAuthority('ADMIN')")
     public List<CantidadEstiloColorFormaDTO> cantidadEstiloColorForma(){
         List<String[]>lista= eS.cantidadEstiloColorForma();
         List<CantidadEstiloColorFormaDTO> listaDTO = new ArrayList<>();
@@ -79,7 +70,6 @@ public class EstiloController {
 
 
     @GetMapping("/CantidadEstilosPorUsuario")
-    @PreAuthorize("hasAuthority('ADMIN')")
     public List<ReporteEstilosPorUsuarioDTO> cantidadEstilosPorUsuario(){
         List<String[]>lista= eS.cantidadEstilosPorUsuario();
         List<ReporteEstilosPorUsuarioDTO> listaDTO = new ArrayList<>();

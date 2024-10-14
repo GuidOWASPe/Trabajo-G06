@@ -2,7 +2,6 @@ package pe.edu.upc.demo.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.demo.dtos.TipoDTO;
 
@@ -16,13 +15,11 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/tipos")
-@PreAuthorize("hasAuthority('ADMIN') or hasAuthority('USUARIO')")
 public class TipoController {
     @Autowired
     private ITipoService tS;
 
     @GetMapping
-    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('USUARIO')")
     public List<TipoDTO> listar(){
 
         return tS.list().stream().map(x->{
@@ -31,14 +28,12 @@ public class TipoController {
         }).collect(Collectors.toList());
     }
     @PostMapping
-    @PreAuthorize("hasAuthority('ADMIN')")
     public void insertar(@RequestBody TipoDTO dto){
         ModelMapper m=new ModelMapper();
         Tipo v=m.map(dto,Tipo.class);
         tS.insert(v);
     }
     @GetMapping ("/{id}")
-    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('USUARIO')")
     public TipoDTO listarId(@PathVariable("id") Integer id) {
         ModelMapper m = new ModelMapper();
         TipoDTO dto = m.map(tS.listId(id), TipoDTO.class);
@@ -46,7 +41,6 @@ public class TipoController {
     }
 
     @PutMapping
-    @PreAuthorize("hasAuthority('ADMIN')")
     public void modificar(@RequestBody TipoDTO dto){
         ModelMapper m=new ModelMapper();
         Tipo v=m.map(dto,Tipo.class);
@@ -54,7 +48,6 @@ public class TipoController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAuthority('ADMIN')")
     public void eliminar(@PathVariable("id") Integer id){
         tS.delete(id);
     }
