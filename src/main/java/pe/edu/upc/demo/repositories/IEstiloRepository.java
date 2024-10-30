@@ -10,22 +10,20 @@ import java.util.List;
 @Repository
 public interface IEstiloRepository extends JpaRepository<Estilo,Integer> {
 
-    @Query(value = " SELECT\n " +
-            "    F.nombre_forma AS Nombre_Forma,\n " +
-            "    C.nombre_color AS Codigo_Color,\n " +
-            "    COUNT(E.id_estilo) AS Cantidad_Estilos\n " +
-            "FROM\n " +
-            "    Estilo E\n " +
-            "LEFT JOIN\n " +
-            "    Rostro R ON E.id_rostro = R.id_rostro\n" +
-            "LEFT JOIN\n " +
-            "    Forma F ON R.id_forma = F.id_forma\n " +
-            "RIGHT JOIN\n " +
-            "    Color C ON E.id_color = C.id_color\n " +
-            "WHERE\n " +
-            "    E.id_estilo = e.id_estilo  \n " +
-            "GROUP BY\n " +
-            "    F.nombre_forma, C.nombre_color; ", nativeQuery = true)
+    @Query(value = "SELECT\n" +
+            " \tF.nombre_forma AS Nombre_Forma,\n" +
+            " \te.codigo_color AS Codigo_Color,\n" +
+            " \tCOUNT(E.id_estilo) AS Cantidad_Estilos \n" +
+            " FROM\n" +
+            " \tEstilo E\n" +
+            " LEFT JOIN\n" +
+            " \tRostro R ON E.id_rostro = R.id_rostro\n" +
+            " LEFT JOIN\n" +
+            " \tForma F ON R.id_forma = F.id_forma\n" +
+            " WHERE\n" +
+            " \tE.id_estilo = e.id_estilo  \n" +
+            " GROUP BY\n" +
+            " \tF.nombre_forma, e.codigo_color",nativeQuery = true)
     public List<String[]> cantidadEstiloColorForma();
 
 

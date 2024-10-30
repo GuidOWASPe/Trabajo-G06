@@ -1,6 +1,5 @@
 package pe.edu.upc.demo.dtos;
-
-import pe.edu.upc.demo.entities.Color;
+import pe.edu.upc.demo.entities.Item;
 import pe.edu.upc.demo.entities.Rostro;
 
 public class EstiloDTO {
@@ -11,7 +10,9 @@ public class EstiloDTO {
 
     private Rostro ro;
 
-    private Color co;
+    private String CodigoColor;
+
+    private Item it;
 
     public int getIdEstilo() {
         return idEstilo;
@@ -37,11 +38,19 @@ public class EstiloDTO {
         this.ro = ro;
     }
 
-    public Color getCo() {
-        return co;
+    public String getCodigoColor() {
+        return CodigoColor;
     }
 
-    public void setCo(Color co) {
-        this.co = co;
+    public void setCodigoColor(String codigoColor) {
+        CodigoColor = codigoColor;
+    }
+
+    public Item getIt() {
+        return it;
+    }
+
+    public void setIt(Item it) {
+        this.it = it;
     }
 }

@@ -13,16 +13,21 @@ public class Estilo {
     @ManyToOne
     @JoinColumn(name="idRostro")
     private Rostro ro;
+    @Column(name = "CodigoColor",length =100 ,nullable = false)
+    private String CodigoColor;
     @ManyToOne
-    @JoinColumn(name="idColor")
-    private Color co;
+    @JoinColumn(name="idItem")
+    private Item it;
+
     public Estilo() {
     }
-    public Estilo(int idEstilo, String nombre, Rostro ro, Color co) {
+
+    public Estilo(int idEstilo, String nombre, Rostro ro, String codigoColor, Item it) {
         this.idEstilo = idEstilo;
         Nombre = nombre;
         this.ro = ro;
-        this.co = co;
+        CodigoColor = codigoColor;
+        this.it = it;
     }
 
     public int getIdEstilo() {
@@ -33,12 +38,12 @@ public class Estilo {
         this.idEstilo = idEstilo;
     }
 
-    public Color getCo() {
-        return co;
+    public String getNombre() {
+        return Nombre;
     }
 
-    public void setCo(Color co) {
-        this.co = co;
+    public void setNombre(String nombre) {
+        Nombre = nombre;
     }
 
     public Rostro getRo() {
@@ -49,11 +54,19 @@ public class Estilo {
         this.ro = ro;
     }
 
-    public String getNombre() {
-        return Nombre;
+    public String getCodigoColor() {
+        return CodigoColor;
     }
 
-    public void setNombre(String nombre) {
-        Nombre = nombre;
+    public void setCodigoColor(String codigoColor) {
+        CodigoColor = codigoColor;
+    }
+
+    public Item getIt() {
+        return it;
+    }
+
+    public void setIt(Item it) {
+        this.it = it;
     }
 }
