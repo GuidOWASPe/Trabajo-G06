@@ -3,9 +3,6 @@ package pe.edu.upc.demo.entities;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
-import java.sql.Array;
-import java.util.ArrayList;
-import java.util.List;
 import java.time.LocalDate;
 
 @Entity

@@ -1,5 +1,4 @@
 package pe.edu.upc.demo.dtos;
-import jakarta.persistence.Column;
 import pe.edu.upc.demo.entities.Item;
 import pe.edu.upc.demo.entities.Rostro;
 
@@ -9,7 +8,7 @@ public class EstiloDTO {
 
     private int idEstilo;
 
-    private String Nombre;
+    private String NombreEstilo;
 
     private Rostro ro;
 
@@ -29,12 +28,12 @@ public class EstiloDTO {
         this.idEstilo = idEstilo;
     }
 
-    public String getNombre() {
-        return Nombre;
+    public String getNombreEstilo() {
+        return NombreEstilo;
     }
 
-    public void setNombre(String nombre) {
-        Nombre = nombre;
+    public void setNombreEstilo(String nombreEstilo) {
+        NombreEstilo = nombreEstilo;
     }
 
     public Rostro getRo() {

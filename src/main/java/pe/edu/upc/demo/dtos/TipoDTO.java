@@ -1,7 +1,5 @@
 package pe.edu.upc.demo.dtos;
 
-import java.time.LocalDate;
-
 public class TipoDTO {
     private int idTipo;
     private String nombreTipo;

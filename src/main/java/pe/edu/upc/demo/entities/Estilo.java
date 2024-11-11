@@ -11,7 +11,7 @@ public class Estilo {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int idEstilo;
     @Column(name = "NombreEstilo",length =100 ,nullable = false)
-    private String Nombre;
+    private String NombreEstilo;
     @ManyToOne
     @JoinColumn(name="idRostro")
     private Rostro ro;
@@ -28,13 +28,13 @@ public class Estilo {
     public Estilo() {
     }
 
-    public Estilo(int idEstilo, String nombre, Rostro ro, String codigoColor, Item it, LocalDate FechaCreado, String imagenEstilo) {
+    public Estilo(int idEstilo, String nombreEstilo, Rostro ro, String codigoColor, Item it, LocalDate fechaCreado, String imagenEstilo) {
         this.idEstilo = idEstilo;
-        Nombre = nombre;
+        NombreEstilo = nombreEstilo;
         this.ro = ro;
         CodigoColor = codigoColor;
         this.it = it;
-        FechaCreado = FechaCreado;
+        FechaCreado = fechaCreado;
         ImagenEstilo = imagenEstilo;
     }
 
@@ -46,12 +46,12 @@ public class Estilo {
         this.idEstilo = idEstilo;
     }
 
-    public String getNombre() {
-        return Nombre;
+    public String getNombreEstilo() {
+        return NombreEstilo;
     }
 
-    public void setNombre(String nombre) {
-        Nombre = nombre;
+    public void setNombreEstilo(String nombreEstilo) {
+        NombreEstilo = nombreEstilo;
     }
 
     public Rostro getRo() {
@@ -82,7 +82,7 @@ public class Estilo {
         return FechaCreado;
     }
 
-    public void setfechaCreado(LocalDate fechaCreado) {
+    public void setFechaCreado(LocalDate fechaCreado) {
         FechaCreado = fechaCreado;
     }
 

@@ -2,7 +2,6 @@ package pe.edu.upc.demo.serviceimplements;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pe.edu.upc.demo.entities.Forma;
 import pe.edu.upc.demo.entities.Item;
 import pe.edu.upc.demo.repositories.IItemRepository;
 import pe.edu.upc.demo.serviceinterfaces.IItemService;

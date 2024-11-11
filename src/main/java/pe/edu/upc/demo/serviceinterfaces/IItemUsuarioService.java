@@ -1,7 +1,6 @@
 package pe.edu.upc.demo.serviceinterfaces;
 
 import pe.edu.upc.demo.entities.ItemUsuario;
-import pe.edu.upc.demo.entities.Rostro;
 
 import java.util.List;
 

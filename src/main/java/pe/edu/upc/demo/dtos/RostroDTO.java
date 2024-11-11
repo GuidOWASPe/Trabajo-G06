@@ -1,10 +1,8 @@
 package pe.edu.upc.demo.dtos;
 
-import jakarta.persistence.*;
 import pe.edu.upc.demo.entities.Usuario;
 import pe.edu.upc.demo.entities.Forma;
 
-import java.time.LocalDate;
 
 public class RostroDTO {
     private int idRostro;
