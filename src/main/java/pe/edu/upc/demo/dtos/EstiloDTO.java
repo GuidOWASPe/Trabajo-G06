@@ -1,6 +1,9 @@
 package pe.edu.upc.demo.dtos;
+import jakarta.persistence.Column;
 import pe.edu.upc.demo.entities.Item;
 import pe.edu.upc.demo.entities.Rostro;
+
+import java.time.LocalDate;
 
 public class EstiloDTO {
 
@@ -13,6 +16,10 @@ public class EstiloDTO {
     private String CodigoColor;
 
     private Item it;
+
+    private LocalDate FechaCreado;
+
+    private String ImagenEstilo;
 
     public int getIdEstilo() {
         return idEstilo;
@@ -52,5 +59,21 @@ public class EstiloDTO {
 
     public void setIt(Item it) {
         this.it = it;
+    }
+
+    public LocalDate getFechaCreado() {
+        return FechaCreado;
+    }
+
+    public void setFechaCreado(LocalDate fechaCreado) {
+        FechaCreado = fechaCreado;
+    }
+
+    public String getImagenEstilo() {
+        return ImagenEstilo;
+    }
+
+    public void setImagenEstilo(String imagenEstilo) {
+        ImagenEstilo = imagenEstilo;
     }
 }

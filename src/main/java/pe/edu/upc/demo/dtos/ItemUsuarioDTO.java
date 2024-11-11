@@ -8,18 +8,18 @@ import java.time.LocalDate;
 import java.util.Date;
 
 public class ItemUsuarioDTO {
-    private int idItemFavorito;
+    private int idItemUsuario;
     private Date fechaItemFavorito;
     private int Calificacion;
     private Usuario us;
     private Item it;
 
-    public int getIdItemFavorito() {
-        return idItemFavorito;
+    public int idItemUsuario() {
+        return idItemUsuario;
     }
 
-    public void setIdItemFavorito(int idItemFavorito) {
-        this.idItemFavorito = idItemFavorito;
+    public void idItemUsuario(int idItemUsuario) {
+        this.idItemUsuario = idItemUsuario;
     }
 
     public Date getFechaItemFavorito() {

@@ -11,10 +11,10 @@ import java.util.Date;
 public class ItemUsuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idItemFavorito;
+    private int idItemUsuario;
     @Column(name = "fechaitemFavorito", nullable = true)
     private Date fechaItemFavorito;
-    @Column(name = "calificacion", nullable = false)
+    @Column(name = "calificacion", nullable = true)
     private int calificacion;
 
     @ManyToOne
@@ -29,17 +29,17 @@ public class ItemUsuario {
     }
 
     public ItemUsuario(int idItemFavorito, Date fechaItemFavorito, int calificacion, Usuario us, Item it) {
-        this.idItemFavorito = idItemFavorito;
+        this.idItemUsuario = idItemUsuario;
         this.fechaItemFavorito = fechaItemFavorito;
         this.calificacion = calificacion;
         this.us = us;
         this.it = it;
     }
 
-    public int getIdItemFavorito() {return idItemFavorito;}
+    public int getIdItemFavorito() {return idItemUsuario;}
 
     public void setIdItemFavorito(int idItemFavorito) {
-        this.idItemFavorito = idItemFavorito;
+        this.idItemUsuario = idItemUsuario;
     }
 
     public Date getFechaItemFavorito() {

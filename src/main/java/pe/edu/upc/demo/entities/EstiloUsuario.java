@@ -9,10 +9,10 @@ import java.util.Date;
 public class EstiloUsuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idEstiloFav;
+    private int idEstiloUsuario;
     @Column(name = "fechaEstiloFav", nullable = true)
     private LocalDate fechaEstiloFav;
-    @Column(name = "calificacionEstilo", nullable = false)
+    @Column(name = "calificacionEstilo", nullable = true)
     private int calificacion;
 
     @ManyToOne
@@ -27,20 +27,20 @@ public class EstiloUsuario {
 
     }
 
-    public EstiloUsuario(int idEstiloFav, LocalDate fechaEstiloFav, int calificacion, Usuario usuario, Estilo estilo) {
-        this.idEstiloFav = idEstiloFav;
+    public EstiloUsuario(int idEstiloUsuario, LocalDate fechaEstiloFav, int calificacion, Usuario usuario, Estilo estilo) {
+        this.idEstiloUsuario = idEstiloUsuario;
         this.fechaEstiloFav = fechaEstiloFav;
         this.calificacion = calificacion;
         this.usuario = usuario;
         this.estilo = estilo;
     }
 
-    public int getIdEstiloFav() {
-        return idEstiloFav;
+    public int getIdEstiloUsuario() {
+        return idEstiloUsuario;
     }
 
-    public void setIdEstiloFav(int idEstiloFav) {
-        this.idEstiloFav = idEstiloFav;
+    public void setIdEstiloUsuario(int idEstiloUsuario) {
+        this.idEstiloUsuario = idEstiloUsuario;
     }
 
     public LocalDate getFechaEstiloFav() {
