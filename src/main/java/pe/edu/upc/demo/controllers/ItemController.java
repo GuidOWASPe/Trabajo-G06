@@ -2,6 +2,7 @@ package pe.edu.upc.demo.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.demo.dtos.ItemDTO;
 import pe.edu.upc.demo.dtos.MaxNroUsosItemDTO;
@@ -14,11 +15,13 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/items")
+@PreAuthorize("hasAuthority('ADMIN')")
 public class ItemController {
     @Autowired
     private IItemService iR;
 
     @GetMapping
+    @PreAuthorize("hasAuthority('ADMIN')")
     public List<ItemDTO> listar() {
 
         return iR.list().stream().map(x -> {
@@ -28,6 +31,7 @@ public class ItemController {
     }
 
     @PostMapping
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void insertar(@RequestBody ItemDTO dto) {
         ModelMapper m = new ModelMapper();
         Item v = m.map(dto, Item.class);
@@ -35,6 +39,7 @@ public class ItemController {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ItemDTO listarId(@PathVariable("id") Integer id) {
         ModelMapper m = new ModelMapper();
         ItemDTO dto = m.map(iR.listId(id), ItemDTO.class);
@@ -42,6 +47,7 @@ public class ItemController {
     }
 
     @PutMapping
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void modificar(@RequestBody ItemDTO dto) {
         ModelMapper m = new ModelMapper();
         Item v = m.map(dto, Item.class);
@@ -49,12 +55,14 @@ public class ItemController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void eliminar(@PathVariable("id") Integer id) {
         iR.delete(id);
     }
 
 
     @GetMapping("/ItemMasUsadoPorUsuario")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public List<MaxNroUsosItemDTO> ItemMasUsado() {
         List<String[]> lista = iR.ItemMasUsado();
         List<MaxNroUsosItemDTO> listaDTO = new ArrayList<>();
