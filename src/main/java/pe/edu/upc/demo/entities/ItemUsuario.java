@@ -28,7 +28,7 @@ public class ItemUsuario {
     public ItemUsuario() {
     }
 
-    public ItemUsuario(int idItemFavorito, Date fechaItemFavorito, int calificacion, Usuario us, Item it) {
+    public ItemUsuario(int idItemUsuario, Date fechaItemFavorito, int calificacion, Usuario us, Item it) {
         this.idItemUsuario = idItemUsuario;
         this.fechaItemFavorito = fechaItemFavorito;
         this.calificacion = calificacion;
@@ -36,9 +36,11 @@ public class ItemUsuario {
         this.it = it;
     }
 
-    public int getIdItemFavorito() {return idItemUsuario;}
+    public int getIdItemUsuario() {
+        return idItemUsuario;
+    }
 
-    public void setIdItemFavorito(int idItemFavorito) {
+    public void setIdItemUsuario(int idItemUsuario) {
         this.idItemUsuario = idItemUsuario;
     }
 
@@ -66,7 +68,9 @@ public class ItemUsuario {
         this.us = us;
     }
 
-    public Item getIt() {return it;}
+    public Item getIt() {
+        return it;
+    }
 
     public void setIt(Item it) {
         this.it = it;
