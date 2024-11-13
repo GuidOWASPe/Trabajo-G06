@@ -12,13 +12,13 @@ public interface IRostroRepository extends JpaRepository<Rostro, Integer> {
 
     @Query(value = "SELECT \n" +
             "    f.nombre_forma AS FormaDeRostro,\n" +
-            "    COUNT(R.id_rostro) AS CantidadRostros\n" +
+            "    COUNT(r.id_rostro) AS CantidadRostros\n" +
             " FROM \n" +
-            "    Forma F\n" +
+            "    forma f\n" +
             " LEFT JOIN \n" +
-            "    Rostro r ON f.id_forma = r.id_forma\n" +
+            "    rostro r ON f.id_forma = r.id_forma\n" +
             " GROUP BY \n" +
-            " \t f.nombre_forma\n" +
-            " IMIT 3 ", nativeQuery = true)
+            "     f.nombre_forma\n" +
+            " LIMIT 3;\n", nativeQuery = true)
     public List<String[]> cantidadRostroForma();
 }
