@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/estiloUsuario")
-@PreAuthorize("hasAuthority('USUARIO') or hasAuthority('ADMIN')")
+@PreAuthorize("hasAuthority('CLIENTE') or hasAuthority('ADMIN')")
 public class EstiloUsuarioController {
     @Autowired
     private IEstiloUsuarioService eS;
@@ -30,7 +30,7 @@ public class EstiloUsuarioController {
         }).collect(Collectors.toList());
     }
     @PostMapping
-    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('USUARIO')")
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('CLIENTE')")
     public void insertar(@RequestBody EstiloUsuarioDTO dto){
         ModelMapper m=new ModelMapper();
         EstiloUsuario v=m.map(dto,EstiloUsuario.class);

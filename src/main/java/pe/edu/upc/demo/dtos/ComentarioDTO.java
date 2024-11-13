@@ -6,19 +6,19 @@ import pe.edu.upc.demo.entities.Usuario;
 import java.time.LocalDate;
 
 public class ComentarioDTO {
-    private  int idcomentario;
+    private  int idComentario;
     private String contenido;
     private int likes;
     private LocalDate fecha_publicada;
     private Usuario us;
     private Estilo et;
 
-    public int getIdcomentario() {
-        return idcomentario;
+    public int getIdComentario() {
+        return idComentario;
     }
 
-    public void setIdcomentario(int idcomentario) {
-        this.idcomentario = idcomentario;
+    public void setIdComentario(int idComentario) {
+        this.idComentario = idComentario;
     }
 
     public String getContenido() {

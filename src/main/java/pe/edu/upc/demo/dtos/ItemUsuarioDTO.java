@@ -14,11 +14,11 @@ public class ItemUsuarioDTO {
     private Usuario us;
     private Item it;
 
-    public int idItemUsuario() {
+    public int getIdItemUsu() {
         return idItemUsuario;
     }
 
-    public void idItemUsuario(int idItemUsuario) {
+    public void setIdItemUsu(int idItemUsuario) {
         this.idItemUsuario = idItemUsuario;
     }
 

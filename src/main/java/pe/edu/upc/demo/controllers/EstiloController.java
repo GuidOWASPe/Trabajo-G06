@@ -16,13 +16,13 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/estilos")
-@PreAuthorize("hasAuthority('USUARIO') or hasAuthority('ADMIN')")
+@PreAuthorize("hasAuthority('CLIENTE') or hasAuthority('ADMIN')")
 public class EstiloController {
     @Autowired
     private IEstiloService eS;
 
     @GetMapping
-    @PreAuthorize("hasAuthority('USUARIO') or hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('CLIENTE') or hasAuthority('ADMIN')")
     public List<EstiloDTO> listar(){
         return eS.list().stream().map(x->{
             ModelMapper m=new ModelMapper();
@@ -39,7 +39,7 @@ public class EstiloController {
     }
 
     @GetMapping ("/{id}")
-    @PreAuthorize("hasAuthority('USUARIO') or hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('CLIENTE') or hasAuthority('ADMIN')")
     public EstiloDTO listarId(@PathVariable("id") Integer id) {
         ModelMapper m = new ModelMapper();
         EstiloDTO dto = m.map(eS.listId(id), EstiloDTO.class);

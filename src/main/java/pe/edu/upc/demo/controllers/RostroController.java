@@ -15,14 +15,14 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/rostros")
-@PreAuthorize("hasAuthority('ADMIN') or hasAuthority('USUARIO')")
+@PreAuthorize("hasAuthority('ADMIN') or hasAuthority('CLIENTE')")
 public class RostroController {
 
     @Autowired
     private IRostroService rS;
 
     @GetMapping
-    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('USUARIO')")
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('CLIENTE')")
     public List<RostroDTO> listar(){
 
         return rS.list().stream().map(v-> {
@@ -32,7 +32,7 @@ public class RostroController {
     }
 
     @PostMapping
-    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('USUARIO')")
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('CLIENTE')")
     public void insertar(@RequestBody RostroDTO dto){
         ModelMapper m = new ModelMapper();
         Rostro v = m.map(dto, Rostro.class);
@@ -40,7 +40,7 @@ public class RostroController {
     }
 
     @GetMapping ("/{id}")
-    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('USUARIO')")
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('CLIENTE')")
     public RostroDTO listarId(@PathVariable("id") Integer id) {
         ModelMapper m = new ModelMapper();
         RostroDTO dto = m.map(rS.listId(id), RostroDTO.class);
@@ -48,7 +48,7 @@ public class RostroController {
     }
 
     @PutMapping
-    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('USUARIO')")
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('CLIENTE')")
     public void modificar(@RequestBody RostroDTO dto){
         ModelMapper m=new ModelMapper();
         Rostro v=m.map(dto,Rostro.class);
@@ -56,7 +56,7 @@ public class RostroController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('USUARIO')")
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('CLIENTE')")
     public void eliminar(@PathVariable("id") Integer id){
         rS.delete(id);
     }

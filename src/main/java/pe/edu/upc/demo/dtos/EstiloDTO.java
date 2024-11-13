@@ -1,23 +1,19 @@
 package pe.edu.upc.demo.dtos;
+import jakarta.persistence.Column;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import pe.edu.upc.demo.entities.Item;
 import pe.edu.upc.demo.entities.Rostro;
 
 import java.time.LocalDate;
 
 public class EstiloDTO {
-
     private int idEstilo;
-
     private String NombreEstilo;
-
     private Rostro ro;
-
     private String CodigoColor;
-
     private Item it;
-
     private LocalDate FechaCreado;
-
     private String ImagenEstilo;
 
     public int getIdEstilo() {
@@ -28,36 +24,12 @@ public class EstiloDTO {
         this.idEstilo = idEstilo;
     }
 
-    public String getNombreEstilo() {
-        return NombreEstilo;
+    public String getImagenEstilo() {
+        return ImagenEstilo;
     }
 
-    public void setNombreEstilo(String nombreEstilo) {
-        NombreEstilo = nombreEstilo;
-    }
-
-    public Rostro getRo() {
-        return ro;
-    }
-
-    public void setRo(Rostro ro) {
-        this.ro = ro;
-    }
-
-    public String getCodigoColor() {
-        return CodigoColor;
-    }
-
-    public void setCodigoColor(String codigoColor) {
-        CodigoColor = codigoColor;
-    }
-
-    public Item getIt() {
-        return it;
-    }
-
-    public void setIt(Item it) {
-        this.it = it;
+    public void setImagenEstilo(String imagenEstilo) {
+        ImagenEstilo = imagenEstilo;
     }
 
     public LocalDate getFechaCreado() {
@@ -68,11 +40,35 @@ public class EstiloDTO {
         FechaCreado = fechaCreado;
     }
 
-    public String getImagenEstilo() {
-        return ImagenEstilo;
+    public Item getIt() {
+        return it;
     }
 
-    public void setImagenEstilo(String imagenEstilo) {
-        ImagenEstilo = imagenEstilo;
+    public void setIt(Item it) {
+        this.it = it;
+    }
+
+    public String getCodigoColor() {
+        return CodigoColor;
+    }
+
+    public void setCodigoColor(String codigoColor) {
+        CodigoColor = codigoColor;
+    }
+
+    public Rostro getRo() {
+        return ro;
+    }
+
+    public void setRo(Rostro ro) {
+        this.ro = ro;
+    }
+
+    public String getNombreEstilo() {
+        return NombreEstilo;
+    }
+
+    public void setNombreEstilo(String nombreEstilo) {
+        NombreEstilo = nombreEstilo;
     }
 }

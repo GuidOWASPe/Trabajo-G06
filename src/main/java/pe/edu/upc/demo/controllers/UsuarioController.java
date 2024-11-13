@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/usuarios")
-@PreAuthorize("hasAuthority('ADMIN') or hasAuthority('USUARIO')")
+@PreAuthorize("hasAuthority('ADMIN') or hasAuthority('CLIENTE')")
 public class UsuarioController {
     @Autowired
     private IUsuarioService uS;
@@ -31,7 +31,7 @@ public class UsuarioController {
     }
 
     @PostMapping
-    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('USUARIO')")
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('CLIENTE')")
     public void insertar(@RequestBody UsuarioDTO dto){
         ModelMapper m=new ModelMapper();
         Usuario u=m.map(dto, Usuario.class);
@@ -49,7 +49,7 @@ public class UsuarioController {
     }
 
     @PutMapping
-    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('USUARIO')")
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('CLIENTE')")
     public void modificar(@RequestBody UsuarioDTO dto){
         ModelMapper m=new ModelMapper();
         Usuario u=m.map(dto,Usuario.class);
@@ -59,7 +59,7 @@ public class UsuarioController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('USUARIO')")
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('CLIENTE')")
     public void eliminar(@PathVariable("id") Long id){
         uS.delete(id);
     }
