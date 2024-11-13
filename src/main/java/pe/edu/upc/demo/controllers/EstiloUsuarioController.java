@@ -61,7 +61,7 @@ public class EstiloUsuarioController {
 
     @GetMapping("/ListarEstiloDeUsuarioConPeorCalifiacion")
     @PreAuthorize("hasAuthority('ADMIN')")
-    public List<EstiloUsuarioConPCDTO> estiloUsuarioConPeorCalifiacion(){
+    public List<EstiloUsuarioConPCDTO> estiloUsuarioConPeorCalificacion(){
         List<String[]> lista=eS.estiloUsuarioConPC();
         List<EstiloUsuarioConPCDTO> listaDTO=new ArrayList<>();
         for(String[] columna:lista){
