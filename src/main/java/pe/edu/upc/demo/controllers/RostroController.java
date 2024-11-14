@@ -2,12 +2,20 @@ package pe.edu.upc.demo.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.demo.dtos.CantidadRostroFormaDTO;
 import pe.edu.upc.demo.dtos.RostroDTO;
+import pe.edu.upc.demo.entities.Forma;
 import pe.edu.upc.demo.entities.Rostro;
+import pe.edu.upc.demo.entities.Usuario;
 import pe.edu.upc.demo.serviceinterfaces.IRostroService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.multipart.MultipartFile;
+import java.io.File;
+import java.io.IOException;
 
 import java.util.ArrayList;
 import java.util.List;
