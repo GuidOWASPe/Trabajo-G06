@@ -13,7 +13,7 @@ public class ItemUsuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idItemUsuario;
     @Column(name = "fechaitemFavorito", nullable = true)
-    private Date fechaItemFavorito;
+    private LocalDate fechaItemFavorito;
     @Column(name = "calificacion", nullable = true)
     private int calificacion;
 
@@ -28,7 +28,7 @@ public class ItemUsuario {
     public ItemUsuario() {
     }
 
-    public ItemUsuario(int idItemUsuario, Date fechaItemFavorito, int calificacion, Usuario us, Item it) {
+    public ItemUsuario(int idItemUsuario, LocalDate fechaItemFavorito, int calificacion, Usuario us, Item it) {
         this.idItemUsuario = idItemUsuario;
         this.fechaItemFavorito = fechaItemFavorito;
         this.calificacion = calificacion;
@@ -44,11 +44,11 @@ public class ItemUsuario {
         this.idItemUsuario = idItemUsuario;
     }
 
-    public Date getFechaItemFavorito() {
+    public LocalDate getFechaItemFavorito() {
         return fechaItemFavorito;
     }
 
-    public void setFechaItemFavorito(Date fechaItemFavorito) {
+    public void setFechaItemFavorito(LocalDate fechaItemFavorito) {
         this.fechaItemFavorito = fechaItemFavorito;
     }
 
