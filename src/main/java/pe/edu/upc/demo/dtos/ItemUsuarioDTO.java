@@ -1,6 +1,5 @@
 package pe.edu.upc.demo.dtos;
 
-import jakarta.persistence.*;
 import pe.edu.upc.demo.entities.Usuario;
 import pe.edu.upc.demo.entities.Item;
 
@@ -9,7 +8,7 @@ import java.util.Date;
 
 public class ItemUsuarioDTO {
     private int idItemUsuario;
-    private Date fechaItemFavorito;
+    private LocalDate fechaItemFavorito;
     private int Calificacion;
     private Usuario us;
     private Item it;
@@ -22,11 +21,11 @@ public class ItemUsuarioDTO {
         this.idItemUsuario = idItemUsuario;
     }
 
-    public Date getFechaItemFavorito() {
+    public LocalDate getFechaItemFavorito() {
         return fechaItemFavorito;
     }
 
-    public void setFechaItemFavorito(Date fechaItemFavorito) {
+    public void setFechaItemFavorito(LocalDate fechaItemFavorito) {
         this.fechaItemFavorito = fechaItemFavorito;
     }
 

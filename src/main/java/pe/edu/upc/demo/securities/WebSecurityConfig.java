@@ -72,9 +72,15 @@ public class WebSecurityConfig {
                                 "/swagger-ui.html",
                                 "/login",
                                 "/register",
-                                "/usuarios/userRegister"
-                        )
-                        .permitAll()
+                                "/usuarios/userRegister",
+                                "/media/**",
+                                "/api/detectar-forma",
+                                "http://127.0.0.1:5000",
+                                "/detectar-forma",
+                                "http://localhost:8080/media/**",
+                                "/http://localhost:8080/media/**"
+                        ).permitAll()  // Public routes
+                        .requestMatchers("/media/**").permitAll()  // Exclude media files from JWT
                         .anyRequest().authenticated()
                 )
                 .httpBasic(Customizer.withDefaults())
