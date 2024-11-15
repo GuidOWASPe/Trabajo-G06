@@ -53,9 +53,8 @@ public class WebSecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
-        //Desde Spring Boot 3.1+
-        httpSecurity
-                .csrf(AbstractHttpConfigurer::disable)
+        // Disable CSRF for simplicity; adjust as necessary for your use case
+        httpSecurity.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(req -> req
                         .requestMatchers(
                                 "/api/v1/auth/**",
@@ -70,16 +69,25 @@ public class WebSecurityConfig {
                                 "/swagger-ui/*",
                                 "/webjars/**",
                                 "/swagger-ui.html",
-                                "/login"
-                        )
-                        .permitAll()
-                        .anyRequest().authenticated()
+                                "/login",
+                                "/api/detectar-forma",
+                                "http://127.0.0.1:5000",
+                                "/detectar-forma",
+                                "http://localhost:8080/media/**",
+                                "/http://localhost:8080/media/**",
+                                "/media/**"
+                        ).permitAll()  // Public routes
+                        .requestMatchers("/media/**").permitAll()  // Exclude media files from JWT
+                        .anyRequest().authenticated()  // All other routes require authentication
                 )
                 .httpBasic(Customizer.withDefaults())
                 .formLogin(AbstractHttpConfigurer::disable)
                 .exceptionHandling(e -> e.authenticationEntryPoint(jwtAuthenticationEntryPoint))
                 .sessionManagement(Customizer.withDefaults());
+
         httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+
         return httpSecurity.build();
     }
 }
+
