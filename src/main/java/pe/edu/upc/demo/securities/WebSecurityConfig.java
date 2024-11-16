@@ -76,10 +76,10 @@ public class WebSecurityConfig {
                                 "/api/detectar-forma",
                                 "http://127.0.0.1:5000",
                                 "/detectar-forma",
-                                "http://localhost:8080/media/**",
-                        )).permitAll()  // Public routes
-                        .requestMatchers("/media/**").permitAll()  // Exclude media files from JWT
-                        .anyRequest().authenticated()
+                                "http://localhost:8080/media/**"
+                        ).permitAll()  // Public routes
+                        .requestMatchers("/media/**").permitAll()
+                        .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults())
                 .formLogin(AbstractHttpConfigurer::disable)
                 .exceptionHandling(e -> e.authenticationEntryPoint(jwtAuthenticationEntryPoint))
