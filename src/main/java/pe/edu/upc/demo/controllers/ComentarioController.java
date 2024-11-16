@@ -46,7 +46,7 @@ public class ComentarioController {
     }
 
     @PutMapping
-    @PreAuthorize("hasAuthority('CLIENTE') or hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void modificar(@RequestBody ComentarioDTO dto){
         ModelMapper m=new ModelMapper();
         Comentario u=m.map(dto,Comentario.class);
@@ -54,7 +54,7 @@ public class ComentarioController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAuthority('CLIENTE') or hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void eliminar(@PathVariable("id") Integer id){
         cT.delete(id);
     }

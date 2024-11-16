@@ -20,7 +20,7 @@ public class FormaController {
     private IFormaService fS;
 
     @GetMapping
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('CLIENTE') or hasAuthority('ADMIN')")
     public List<FormaDTO> listar(){
 
         return fS.list().stream().map(x->{
@@ -29,7 +29,7 @@ public class FormaController {
         }).collect(Collectors.toList());
     }
     @PostMapping
-    @PreAuthorize("hasAuthority('CLIENTE') or hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void insertar(@RequestBody FormaDTO dto){
         ModelMapper m=new ModelMapper();
         Forma v=m.map(dto,Forma.class);
@@ -44,7 +44,7 @@ public class FormaController {
     }
 
     @PutMapping
-    @PreAuthorize("hasAuthority('CLIENTE') or hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void modificar(@RequestBody FormaDTO dto){
         ModelMapper m=new ModelMapper();
         Forma v=m.map(dto,Forma.class);
@@ -52,7 +52,7 @@ public class FormaController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAuthority('CLIENTE') or hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void eliminar(@PathVariable("id") Integer id){
         fS.delete(id);
     }

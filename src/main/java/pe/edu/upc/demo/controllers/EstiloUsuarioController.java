@@ -21,7 +21,7 @@ public class EstiloUsuarioController {
     private IEstiloUsuarioService eS;
 
     @GetMapping
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('CLIENTE') or hasAuthority('ADMIN')")
     public List<EstiloUsuarioDTO> listar(){
 
         return eS.list().stream().map(x->{
@@ -45,7 +45,7 @@ public class EstiloUsuarioController {
     }
 
     @PutMapping
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('CLIENTE') or hasAuthority('ADMIN')")
     public void modificar(@RequestBody EstiloUsuarioDTO dto){
         ModelMapper m=new ModelMapper();
         EstiloUsuario v=m.map(dto,EstiloUsuario.class);
@@ -53,7 +53,7 @@ public class EstiloUsuarioController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('CLIENTE') or hasAuthority('ADMIN')")
     public void eliminar(@PathVariable("id") Integer id){
         eS.delete(id);
     }
