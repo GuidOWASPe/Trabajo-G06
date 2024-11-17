@@ -31,7 +31,7 @@ public class EstiloController {
     }
 
     @PostMapping
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('CLIENTE') or hasAuthority('ADMIN')")
     public void insertar(@RequestBody EstiloDTO dto){
         ModelMapper m=new ModelMapper();
         Estilo e=m.map(dto,Estilo.class);
@@ -47,7 +47,7 @@ public class EstiloController {
     }
 
     @PutMapping
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('CLIENTE') or hasAuthority('ADMIN')")
     public void modificar(@RequestBody EstiloDTO dto){
         ModelMapper m=new ModelMapper();
         Estilo v=m.map(dto,Estilo.class);
@@ -55,7 +55,7 @@ public class EstiloController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('CLIENTE') or hasAuthority('ADMIN')")
     public void eliminar(@PathVariable("id") Integer id){
         eS.delete(id);
     }

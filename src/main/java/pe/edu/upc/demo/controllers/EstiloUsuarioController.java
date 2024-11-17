@@ -37,7 +37,7 @@ public class EstiloUsuarioController {
         eS.insert(v);
     }
     @GetMapping ("/{id}")
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('CLIENTE') or hasAuthority('ADMIN')")
     public EstiloUsuarioDTO listarId(@PathVariable("id") Integer id) {
         ModelMapper m = new ModelMapper();
         EstiloUsuarioDTO dto = m.map(eS.listId(id), EstiloUsuarioDTO.class);
