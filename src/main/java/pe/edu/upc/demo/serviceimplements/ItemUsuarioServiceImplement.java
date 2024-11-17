@@ -3,7 +3,6 @@ package pe.edu.upc.demo.serviceimplements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pe.edu.upc.demo.entities.ItemUsuario;
-import pe.edu.upc.demo.entities.Rostro;
 import pe.edu.upc.demo.repositories.IItemUsuarioRepository;
 import pe.edu.upc.demo.serviceinterfaces.IItemUsuarioService;
 

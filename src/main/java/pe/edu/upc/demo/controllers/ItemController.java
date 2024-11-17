@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.demo.dtos.ItemDTO;
-import pe.edu.upc.demo.dtos.ItemsMasUsadosDTO;
 import pe.edu.upc.demo.dtos.MaxNroUsosItemDTO;
 import pe.edu.upc.demo.entities.Item;
 import pe.edu.upc.demo.serviceinterfaces.IItemService;

@@ -1,17 +1,20 @@
 package pe.edu.upc.demo.dtos;
-
-import pe.edu.upc.demo.entities.Color;
+import jakarta.persistence.Column;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import pe.edu.upc.demo.entities.Item;
 import pe.edu.upc.demo.entities.Rostro;
 
+import java.time.LocalDate;
+
 public class EstiloDTO {
-
     private int idEstilo;
-
-    private String Nombre;
-
+    private String NombreEstilo;
     private Rostro ro;
-
-    private Color co;
+    private String CodigoColor;
+    private Item it;
+    private LocalDate FechaCreado;
+    private String ImagenEstilo;
 
     public int getIdEstilo() {
         return idEstilo;
@@ -21,12 +24,36 @@ public class EstiloDTO {
         this.idEstilo = idEstilo;
     }
 
-    public String getNombre() {
-        return Nombre;
+    public String getImagenEstilo() {
+        return ImagenEstilo;
     }
 
-    public void setNombre(String nombre) {
-        Nombre = nombre;
+    public void setImagenEstilo(String imagenEstilo) {
+        ImagenEstilo = imagenEstilo;
+    }
+
+    public LocalDate getFechaCreado() {
+        return FechaCreado;
+    }
+
+    public void setFechaCreado(LocalDate fechaCreado) {
+        FechaCreado = fechaCreado;
+    }
+
+    public Item getIt() {
+        return it;
+    }
+
+    public void setIt(Item it) {
+        this.it = it;
+    }
+
+    public String getCodigoColor() {
+        return CodigoColor;
+    }
+
+    public void setCodigoColor(String codigoColor) {
+        CodigoColor = codigoColor;
     }
 
     public Rostro getRo() {
@@ -37,11 +64,11 @@ public class EstiloDTO {
         this.ro = ro;
     }
 
-    public Color getCo() {
-        return co;
+    public String getNombreEstilo() {
+        return NombreEstilo;
     }
 
-    public void setCo(Color co) {
-        this.co = co;
+    public void setNombreEstilo(String nombreEstilo) {
+        NombreEstilo = nombreEstilo;
     }
 }

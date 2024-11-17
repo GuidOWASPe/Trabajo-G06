@@ -9,7 +9,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import pe.edu.upc.demo.entities.Rol;
 import pe.edu.upc.demo.entities.Usuario;
-import pe.edu.upc.demo.repositories.IRolRepository;
 import pe.edu.upc.demo.repositories.IUsuarioRepository;
 
 import java.util.ArrayList;

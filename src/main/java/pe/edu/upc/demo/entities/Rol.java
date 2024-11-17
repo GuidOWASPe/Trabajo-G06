@@ -1,10 +1,7 @@
 package pe.edu.upc.demo.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
-import java.io.Serializable;
-import java.util.List;
 
 @Entity
 @Table(name = "Rol")

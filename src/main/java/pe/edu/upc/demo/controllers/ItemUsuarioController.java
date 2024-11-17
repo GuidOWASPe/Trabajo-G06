@@ -15,14 +15,14 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/itemUsuario")
-@PreAuthorize("hasAuthority('ADMIN') or hasAuthority('USUARIO')")
+@PreAuthorize("hasAuthority('ADMIN') or hasAuthority('CLIENTE')")
 public class ItemUsuarioController {
 
     @Autowired
     private IItemUsuarioService iS;
 
     @GetMapping
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('CLIENTE')")
     public List<ItemUsuarioDTO> listar(){
 
         return iS.list().stream().map(v-> {
@@ -32,7 +32,7 @@ public class ItemUsuarioController {
     }
 
     @PostMapping
-    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('USUARIO')")
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('CLIENTE')")
     public void insertar(@RequestBody ItemUsuarioDTO dto){
         ModelMapper m = new ModelMapper();
         ItemUsuario v = m.map(dto, ItemUsuario.class);
@@ -40,7 +40,7 @@ public class ItemUsuarioController {
     }
 
     @GetMapping ("/{id}")
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('CLIENTE')")
     public ItemUsuarioDTO listarId(@PathVariable("id") Integer id) {
         ModelMapper m = new ModelMapper();
         ItemUsuarioDTO dto = m.map(iS.listId(id), ItemUsuarioDTO.class);
@@ -48,7 +48,7 @@ public class ItemUsuarioController {
     }
 
     @PutMapping
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('CLIENTE')")
     public void modificar(@RequestBody ItemUsuarioDTO dto){
         ModelMapper m=new ModelMapper();
         ItemUsuario v=m.map(dto,ItemUsuario.class);
@@ -56,7 +56,7 @@ public class ItemUsuarioController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('CLIENTE')")
     public void eliminar(@PathVariable("id") Integer id){
         iS.delete(id);
     }

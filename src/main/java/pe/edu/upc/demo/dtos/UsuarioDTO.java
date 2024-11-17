@@ -1,6 +1,5 @@
 package pe.edu.upc.demo.dtos;
 
-import jakarta.persistence.*;
 import pe.edu.upc.demo.entities.Rol;
 
 import java.time.LocalDate;

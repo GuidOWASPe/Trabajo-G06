@@ -11,10 +11,10 @@ import java.util.Date;
 public class ItemUsuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idItemFavorito;
+    private int idItemUsuario;
     @Column(name = "fechaitemFavorito", nullable = true)
-    private Date fechaItemFavorito;
-    @Column(name = "calificacion", nullable = false)
+    private LocalDate fechaItemFavorito;
+    @Column(name = "calificacion", nullable = true)
     private int calificacion;
 
     @ManyToOne
@@ -28,25 +28,27 @@ public class ItemUsuario {
     public ItemUsuario() {
     }
 
-    public ItemUsuario(int idItemFavorito, Date fechaItemFavorito, int calificacion, Usuario us, Item it) {
-        this.idItemFavorito = idItemFavorito;
+    public ItemUsuario(int idItemUsuario, LocalDate fechaItemFavorito, int calificacion, Usuario us, Item it) {
+        this.idItemUsuario = idItemUsuario;
         this.fechaItemFavorito = fechaItemFavorito;
         this.calificacion = calificacion;
         this.us = us;
         this.it = it;
     }
 
-    public int getIdItemFavorito() {return idItemFavorito;}
-
-    public void setIdItemFavorito(int idItemFavorito) {
-        this.idItemFavorito = idItemFavorito;
+    public int getIdItemUsuario() {
+        return idItemUsuario;
     }
 
-    public Date getFechaItemFavorito() {
+    public void setIdItemUsuario(int idItemUsuario) {
+        this.idItemUsuario = idItemUsuario;
+    }
+
+    public LocalDate getFechaItemFavorito() {
         return fechaItemFavorito;
     }
 
-    public void setFechaItemFavorito(Date fechaItemFavorito) {
+    public void setFechaItemFavorito(LocalDate fechaItemFavorito) {
         this.fechaItemFavorito = fechaItemFavorito;
     }
 
@@ -66,7 +68,9 @@ public class ItemUsuario {
         this.us = us;
     }
 
-    public Item getIt() {return it;}
+    public Item getIt() {
+        return it;
+    }
 
     public void setIt(Item it) {
         this.it = it;

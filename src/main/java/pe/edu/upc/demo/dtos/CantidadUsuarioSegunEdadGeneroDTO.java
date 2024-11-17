@@ -1,6 +1,8 @@
 package pe.edu.upc.demo.dtos;
 
 public class CantidadUsuarioSegunEdadGeneroDTO {
+
+
     private String rangoEdad;
     private String genero;
     private int cantidadUsuario;

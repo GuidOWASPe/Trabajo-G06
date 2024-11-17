@@ -4,7 +4,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import pe.edu.upc.demo.dtos.EstiloItemDTO;
 import pe.edu.upc.demo.dtos.EstiloUsuarioConPCDTO;
 import pe.edu.upc.demo.dtos.EstiloUsuarioDTO;
 import pe.edu.upc.demo.entities.EstiloUsuario;
@@ -16,13 +15,13 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/estiloUsuario")
-@PreAuthorize("hasAuthority('USUARIO') or hasAuthority('ADMIN')")
+@PreAuthorize("hasAuthority('CLIENTE') or hasAuthority('ADMIN')")
 public class EstiloUsuarioController {
     @Autowired
     private IEstiloUsuarioService eS;
 
     @GetMapping
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('CLIENTE') or hasAuthority('ADMIN')")
     public List<EstiloUsuarioDTO> listar(){
 
         return eS.list().stream().map(x->{
@@ -31,7 +30,7 @@ public class EstiloUsuarioController {
         }).collect(Collectors.toList());
     }
     @PostMapping
-    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('USUARIO')")
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('CLIENTE')")
     public void insertar(@RequestBody EstiloUsuarioDTO dto){
         ModelMapper m=new ModelMapper();
         EstiloUsuario v=m.map(dto,EstiloUsuario.class);
@@ -46,7 +45,7 @@ public class EstiloUsuarioController {
     }
 
     @PutMapping
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('CLIENTE') or hasAuthority('ADMIN')")
     public void modificar(@RequestBody EstiloUsuarioDTO dto){
         ModelMapper m=new ModelMapper();
         EstiloUsuario v=m.map(dto,EstiloUsuario.class);
@@ -54,7 +53,7 @@ public class EstiloUsuarioController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('CLIENTE') or hasAuthority('ADMIN')")
     public void eliminar(@PathVariable("id") Integer id){
         eS.delete(id);
     }
@@ -62,7 +61,7 @@ public class EstiloUsuarioController {
 
     @GetMapping("/ListarEstiloDeUsuarioConPeorCalifiacion")
     @PreAuthorize("hasAuthority('ADMIN')")
-    public List<EstiloUsuarioConPCDTO> estiloUsuarioConPeorCalifiacion(){
+    public List<EstiloUsuarioConPCDTO> estiloUsuarioConPeorCalificacion(){
         List<String[]> lista=eS.estiloUsuarioConPC();
         List<EstiloUsuarioConPCDTO> listaDTO=new ArrayList<>();
         for(String[] columna:lista){

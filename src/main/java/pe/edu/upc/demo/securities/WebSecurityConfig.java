@@ -19,8 +19,6 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 
-import static org.springframework.security.web.util.matcher.AntPathRequestMatcher.antMatcher;
-
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
@@ -55,9 +53,8 @@ public class WebSecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
-        //Desde Spring Boot 3.1+
-        httpSecurity
-                .csrf(AbstractHttpConfigurer::disable)
+        // Disable CSRF for simplicity; adjust as necessary for your use case
+        httpSecurity.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(req -> req
                         .requestMatchers(
                                 "/api/v1/auth/**",
@@ -72,16 +69,25 @@ public class WebSecurityConfig {
                                 "/swagger-ui/*",
                                 "/webjars/**",
                                 "/swagger-ui.html",
-                                "/login"
-                        )
-                        .permitAll()
-                        .anyRequest().authenticated()
-                )
+                                "/login",
+                                "/register",
+                                "/usuarios/userRegister",
+                                "/media/**",
+                                "/api/detectar-forma",
+                                "http://127.0.0.1:5000",
+                                "/detectar-forma",
+                                "http://localhost:8080/media/**"
+                        ).permitAll()  // Public routes
+                        .requestMatchers("/media/**").permitAll()
+                        .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults())
                 .formLogin(AbstractHttpConfigurer::disable)
                 .exceptionHandling(e -> e.authenticationEntryPoint(jwtAuthenticationEntryPoint))
                 .sessionManagement(Customizer.withDefaults());
+
         httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+
         return httpSecurity.build();
     }
 }
+

@@ -25,6 +25,11 @@ public class UsuarioServiceImplement implements IUsuarioService {
     }
 
     @Override
+    public void insertarRegister(Usuario tu) {
+        uR.save(tu);
+    }
+
+    @Override
     public void update(Usuario v) {
         uR.save(v);
     }

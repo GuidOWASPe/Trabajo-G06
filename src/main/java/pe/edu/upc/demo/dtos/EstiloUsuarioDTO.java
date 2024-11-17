@@ -6,18 +6,18 @@ import pe.edu.upc.demo.entities.Usuario;
 import java.time.LocalDate;
 
 public class EstiloUsuarioDTO {
-    private int idEstiloFav;
+    private int idEstiloUsuario;
     private LocalDate fechaEstiloFav;
     private int calificacion;
     private Usuario usuario;
     private Estilo estilo;
 
-    public int getIdEstiloFav() {
-        return idEstiloFav;
+    public int getIdEstiloUsuario() {
+        return idEstiloUsuario;
     }
 
-    public void setIdEstiloFav(int idEstiloFav) {
-        this.idEstiloFav = idEstiloFav;
+    public void setIdEstiloUsuario(int idEstiloUsuario) {
+        this.idEstiloUsuario = idEstiloUsuario;
     }
 
     public LocalDate getFechaEstiloFav() {

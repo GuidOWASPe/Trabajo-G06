@@ -10,17 +10,17 @@ import java.util.List;
 @Repository
 public interface IEstiloUsuarioRepository extends JpaRepository<EstiloUsuario, Integer> {
     @Query(value = "SELECT \n" +
-            "    EU.id_estilo_fav, \n" +
-            "    U.nickname_usuario AS Usuario, \n" +
+            "    EU.id_estilo_usuario, \n" +
+            "    U.username AS Usuario, \n" +
             "    E.nombre_estilo AS Estilo, \n" +
             "    EU.calificacion_estilo\n" +
-            " FROM \n" +
+            "  FROM \n" +
             "    estilo_usuario EU\n" +
             " JOIN \n" +
-            "    Usuarios U ON EU.id_usuario = U.id_usuario\n" +
-            " JOIN \n" +
-            "    Estilo E ON EU.id_estilo = E.id_estilo\n" +
-            " WHERE \n" +
-            "    EU.calificacion_estilo = (SELECT MIN(calificacion_estilo) FROM estilo_usuario);",nativeQuery = true)
+            "    usuarios U ON EU.id_usuario = U.id_usuario\n" +
+            "  JOIN \n" +
+            "    estilo E ON EU.id_estilo = E.id_estilo\n" +
+            "  WHERE \n" +
+            "   EU.calificacion_estilo = (SELECT MIN(calificacion_estilo) FROM estilo_usuario);\n",nativeQuery = true)
     public List<String[]> estiloUsuarioConPC();
 }
