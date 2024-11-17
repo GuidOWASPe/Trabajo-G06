@@ -21,9 +21,8 @@ public class ItemController {
     private IItemService iR;
 
     @GetMapping
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('CLIENTE')")
     public List<ItemDTO> listar() {
-
         return iR.list().stream().map(x -> {
             ModelMapper m = new ModelMapper();
             return m.map(x, ItemDTO.class);
