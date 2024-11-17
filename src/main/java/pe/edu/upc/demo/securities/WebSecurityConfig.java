@@ -76,7 +76,7 @@ public class WebSecurityConfig {
                                 "/api/detectar-forma",
                                 "http://127.0.0.1:5000",
                                 "/detectar-forma",
-                                "http://localhost:8080/media/**"
+                                "http://trabajo-g06.onrender.com/media/**"
                         ).permitAll()  // Public routes
                         .requestMatchers("/media/**").permitAll()
                         .anyRequest().authenticated())
