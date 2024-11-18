@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/estiloUsuario")
+@RequestMapping("/estiloUsuari")
 public class EstiloUsuarioController {
     @Autowired
     private IEstiloUsuarioService eS;
@@ -47,7 +47,7 @@ public class EstiloUsuarioController {
     }
 
     @DeleteMapping("/{id}")
-    public void eliminar(@PathVariable("id") Integer id){
+    public void delete(@PathVariable("id") Integer id){
         eS.delete(id);
     }
 
